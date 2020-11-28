@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :evaluations
   has_many :incourses
   has_many :courses, through: :incourses
-  has_many :adminsof
-  has_many :courses, through: :adminsof
+  has_many :adminofs
+  has_many :courses, through: :adminofs
   has_many :incompletes
 end
