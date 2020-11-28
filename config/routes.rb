@@ -2,12 +2,9 @@ Rails.application.routes.draw do
   root 'pages#home'
   devise_for :users,
     path_names: {
-      sign_in: 'login',
-      sign_out: 'logout',
-      password: 'secret',
-      confirmation: 'verification',
-      registration: 'register',
-      sign_up: 'signup'
+        sign_in: 'login',
+        sign_out: 'logout',
+        sign_up: 'signup'
     }
   get 'home', to: 'pages#home', as: 'home'
   get 'user_main', to: 'pages#uman', as: 'uman'

@@ -21,9 +21,10 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 # Authentication for users
 gem 'devise'
-gem 'jquery-rails'
-gem 'bootstrap-sass'
-gem 'jquery-datatables'
+gem 'bootstrap', '~> 4.3.1'
+gem 'simple_form'
+gem 'bootstrap-sass', '~> 3.4.1'
+gem 'sassc-rails', '>= 2.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

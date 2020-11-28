@@ -6713,6 +6713,11 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
+sprockets@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/sprockets/-/sprockets-0.0.0.tgz#01b5ad4bd1d45240e4ace1e7423d63c85ce2b0ea"
+  integrity sha1-AbWtS9HUUkDkrOHnQj1jyFzisOo=
+
 sshpk@^1.7.0:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.16.1.tgz#fb661c0bef29b39db40769ee39fa70093d6f6877"

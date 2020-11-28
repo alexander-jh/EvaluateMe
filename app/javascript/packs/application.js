@@ -4,13 +4,14 @@
 // that code so it'll be compiled.
 
 import "bootstrap"
-import "select2"
 import $ from 'jquery';
 global.$ = jQuery;
 
+//= require bootstrap-modal
+
 require("@rails/ujs").start()
-require("turbolinks").start()
 require("@rails/activestorage").start()
+require("turbolinks").start()
 require("channels")
 
 $(document).ready( function () {
