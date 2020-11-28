@@ -1,0 +1,32 @@
+<%= form_with(model: ingroup, local: true) do |form| %>
+  <% if ingroup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ingroup.errors.count, "error") %> prohibited this ingroup from being saved:</h2>
+
+      <ul>
+        <% ingroup.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :group %>
+    <%= form.text_field :group %>
+  </div>
+
+  <div class="field">
+    <%= form.label :references %>
+    <%= form.text_field :references %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

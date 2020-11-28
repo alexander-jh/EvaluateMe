@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Adminofs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Course</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adminofs.each do |adminof| %>
+      <tr>
+        <td><%= adminof.user_id %></td>
+        <td><%= adminof.course_id %></td>
+        <td><%= link_to 'Show', adminof %></td>
+        <td><%= link_to 'Edit', edit_adminof_path(adminof) %></td>
+        <td><%= link_to 'Destroy', adminof, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Adminof', new_adminof_path %>

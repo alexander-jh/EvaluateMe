@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @ingroup.user_id %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @ingroup.group %>
+</p>
+
+<p>
+  <strong>References:</strong>
+  <%= @ingroup.references %>
+</p>
+
+<%= link_to 'Edit', edit_ingroup_path(@ingroup) %> |
+<%= link_to 'Back', ingroups_path %>

@@ -1,0 +1,2 @@
+module IngroupsHelper
+end

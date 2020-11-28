@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ingroups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Group</th>
+      <th>References</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ingroups.each do |ingroup| %>
+      <tr>
+        <td><%= ingroup.user_id %></td>
+        <td><%= ingroup.group %></td>
+        <td><%= ingroup.references %></td>
+        <td><%= link_to 'Show', ingroup %></td>
+        <td><%= link_to 'Edit', edit_ingroup_path(ingroup) %></td>
+        <td><%= link_to 'Destroy', ingroup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ingroup', new_ingroup_path %>
