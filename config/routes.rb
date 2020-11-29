@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'home', to: 'pages#home', as: 'home'
   get 'portal', to: 'pages#portal', as: 'portal'
   get 'user_main', to: 'pages#uman', as: 'uman'
+  get 'admin_main', to: 'pages#aman', as: 'aman'
   get 'group_main', to: 'pages#gman', as: 'gman'
   resources :incourses
   resources :incompletes
