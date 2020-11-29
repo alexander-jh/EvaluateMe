@@ -4,27 +4,44 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    if !user_signed_in?
+      redirect_to home_path
+    end
+
+    if user_signed_in? && current_user.try(:admin?)
+      @groups = Group.where(user_id: current_user)
+    else
+      @groups = Group.all
+    end
   end
 
   # GET /groups/1
   # GET /groups/1.json
   def show
+    if !user_signed_in?
+      redirect_to home_path
+    end
   end
 
   # GET /groups/new
   def new
-    @group = Group.new
+    if !user_signed_in?
+      redirect_to home_path
+    end
+    @group = current_user.groups.build
   end
 
   # GET /groups/1/edit
   def edit
+    if !user_signed_in?
+      redirect_to home_path
+    end
   end
 
   # POST /groups
   # POST /groups.json
   def create
-    @group = Group.new(group_params)
+    @group = current_user.groups.build(group_params)
 
     respond_to do |format|
       if @group.save
