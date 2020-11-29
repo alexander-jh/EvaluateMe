@@ -1,27 +1,29 @@
-<%= form_with(model: project, local: true) do |form| %>
-  <% if project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
-
-      <ul>
-        <% project.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+<div id="contact-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_with(model: @project, local: true) do |form| %>
+        <% if @project.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@project.errors.count, "error") %> prohibited this insection from being saved:</h2>
+            <ul>
+              <% @project.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+        <div class="modal-body">
+          <div class="field">
+            <%= form.label :project_name%>
+            <%= form.text_field :pname %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="actions">
+            <%= form.submit %>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :group_id %>
-    <%= form.text_field :group_id %>
   </div>
-
-  <div class="field">
-    <%= form.label :pname %>
-    <%= form.text_field :pname %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

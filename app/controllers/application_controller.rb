@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || uman_url
+  end
+
   protected
 
   def update_allowed_parameters
