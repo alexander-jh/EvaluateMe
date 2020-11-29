@@ -28,6 +28,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
+
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
       else
@@ -69,6 +70,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:section_id, :subject, :number, :name)
+      params.require(:course).permit(:course_id, :subject, :number, :name)
     end
 end
