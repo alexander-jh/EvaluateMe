@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    stored_location_for(resource) || uman_url
+    stored_location_for(resource) || portal_url
   end
 
   protected

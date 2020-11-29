@@ -7,4 +7,7 @@ class PagesController < ApplicationController
 
   def gman
   end
+
+  def portal
+  end
 end

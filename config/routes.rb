@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         sign_up: 'signup'
     }
   get 'home', to: 'pages#home', as: 'home'
+  get 'portal', to: 'pages#portal', as: 'portal'
   get 'user_main', to: 'pages#uman', as: 'uman'
   get 'group_main', to: 'pages#gman', as: 'gman'
   resources :incourses
