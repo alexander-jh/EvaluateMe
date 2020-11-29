@@ -1,0 +1,16 @@
+<div class= "nav-bar">
+  <div class="main">
+    <%- if !user_signed_in? %>
+      <%= link_to "Home", home_url%>
+    <% else %>
+      <%= link_to "Home", portal_url %>
+    <% end %>
+  </div>
+  <div class="account">
+    <%- if user_signed_in? %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "signup-btn" %>
+    <% else %>
+      <%= link_to "Sign Up", new_registration_path(resource_name), class: "signup-btn"%>
+    <% end %>
+  </div>
+</div>
