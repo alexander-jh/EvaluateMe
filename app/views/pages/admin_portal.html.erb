@@ -6,16 +6,14 @@
     <th>Subject</th>
     <th>Number</th>
     <th>Course Name</th>
-    <th>Admin</th>
     </thead>
     <tbody>
-    <% Incourse.all.each do |user| %>
+    <% Course.where(user_id: current_user.id).each do |course| %>
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%= course.course_id %></td>
+        <td><%= course.subject %></td>
+        <td><%= course.number %></td>
+        <td><%= course.name %></td>
       </tr>
     <% end %>
     </tbody>

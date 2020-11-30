@@ -31,8 +31,7 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-    @course = Course.new(course_params)
-
+    @course = Course.new(course_params.merge(user_id: current_user.id))
     respond_to do |format|
       if @course.save
         # Adminof.create(user_id: current_user, course_id: @course.course_id)

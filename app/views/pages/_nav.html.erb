@@ -2,6 +2,8 @@
   <div class="main">
     <%- if !user_signed_in? %>
       <%= link_to "EvaluateMe", home_url%>
+    <% elsif current_user.admin? %>
+      <%= link_to "EvaluateMe", admin_portal_url %>
     <% else %>
       <%= link_to "EvaluateMe", portal_url %>
     <% end %>

@@ -9,6 +9,7 @@
       <th>Subject</th>
       <th>Number</th>
       <th>Name</th>
+      <th>Admin</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= course.subject %></td>
         <td><%= course.number %></td>
         <td><%= course.name %></td>
+        <td><%= course.user_id %></td>
         <td><%= link_to 'Show', course %></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
