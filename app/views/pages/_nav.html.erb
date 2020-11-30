@@ -8,9 +8,10 @@
   </div>
   <div class="account">
     <%- if user_signed_in? %>
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "signup-btn" %>
-    <%- elsif user_signed_in? && current_user.admin? %>
+      <%- if current_user.admin? %>
         <%= link_to 'Add Course', new_course_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "signup-btn"} %>
+      <% end %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "signup-btn" %>
     <% else %>
         <%= link_to "Sign Up", new_registration_path(resource_name), class: "signup-btn"%>
     <% end %>

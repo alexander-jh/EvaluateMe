@@ -6,10 +6,10 @@ class CoursesController < ApplicationController
   def index
     if !user_signed_in?
       redirect_to home_path
-    end
-
-    if user_signed_in? && !current_user.try(:admin?)
-      redirect_to home_path
+    elsif current_user.admin?
+      redirect_to admin_portal_path
+    else
+      redirect_to portal_path
     end
     @courses = Course.where(user_id: current_user)
   end

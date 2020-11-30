@@ -1,13 +1,11 @@
 class PagesController < ApplicationController
-  def home
-  end
+  def home; end
 
-  def uman
-  end
+  def uman; end
 
-  def gman
-  end
+  def gman; end
 
-  def portal
-  end
+  def portal; end
+
+  def admin_portal; end
 end
