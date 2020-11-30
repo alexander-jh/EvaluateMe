@@ -14,14 +14,6 @@ require("@rails/activestorage").start()
 require("turbolinks").start()
 require("channels")
 
-$(document).ready( function () {
-    $('#example').DataTable();
-} );
-
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
 })
-
-$('#form_id').on('submit', function() {
-    $('#addListItem').modal('hide');
-});
