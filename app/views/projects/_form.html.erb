@@ -15,8 +15,9 @@
         <% end %>
         <div class="modal-body">
           <div class="field">
-            <%= form.label :project_name%>
+            <%= form.label :pname%>
             <%= form.text_field :pname %>
+            <%= form.hidden_field :course_id, :value => Course.find_by(id: params[:course_id]).id %>
           </div>
         </div>
         <div class="modal-footer">

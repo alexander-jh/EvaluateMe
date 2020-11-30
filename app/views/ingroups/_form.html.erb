@@ -1,10 +1,11 @@
-<div id="contact-modal" class="modal fade">
+<div id="modal-window" class="modal fade">
   <div class="modal-dialog">
+    <button class="close" data-dismiss="modal">x</button>
     <div class="modal-content">
       <%= form_with(model: @ingroup, local: true) do |form| %>
         <% if @ingroup.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(@ingroup.errors.count, "error") %> prohibited this ingroup from being saved:</h2>
+            <h2><%= pluralize(@ingroup.errors.count, "error") %> prohibited this incourse from being saved:</h2>
             <ul>
               <% @ingroup.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -14,8 +15,9 @@
         <% end %>
         <div class="modal-body">
           <div class="field">
-            <%= form.label :user_id %>
-            <%= form.text_field :user_id %>
+              <%= form.label :user_id %>
+              <%= form.select :user_id, Incourse.where(course_id: Group.find_by(id: params[:group_id]).course_id).collect {|user| ["#{user.user.Lname}, #{user.user.Fname}", user.user.id]}%>
+              <%= form.hidden_field :group_id, :value => Group.find_by(id: params[:group_id]).id %>
           </div>
         </div>
         <div class="modal-footer">

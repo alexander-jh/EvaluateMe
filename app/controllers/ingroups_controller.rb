@@ -14,6 +14,7 @@ class IngroupsController < ApplicationController
 
   # GET /ingroups/new
   def new
+    @current_group = params[:group_id]
     @ingroup = Ingroup.new
   end
 
@@ -69,6 +70,6 @@ class IngroupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ingroup_params
-      params.require(:ingroup).permit(:user_id, :group, :references)
+      params.require(:ingroup).permit(:user_id, :group_id)
     end
 end

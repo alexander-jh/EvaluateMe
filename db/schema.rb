@@ -104,5 +104,5 @@ ActiveRecord::Schema.define(version: 2020_11_30_222822) do
   add_foreign_key "incourses", "courses"
   add_foreign_key "incourses", "users"
   add_foreign_key "ingroups", "users"
-  add_foreign_key "projects", "groups", column: "course_id"
+  add_foreign_key "projects", "courses"
 end
