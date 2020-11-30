@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if current_user.admin?
+    if resource.admin?
       stored_location_for(resource) || admin_portal_url
     else
       stored_location_for(resource) || portal_url
@@ -28,7 +28,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
   def update_allowed_parameters
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:Fname, :Lname, :email, :password, :password_confirmation, :admin)}
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:Fname, :Lname, :email, :password, :current_password)}
