@@ -6,43 +6,32 @@ class GroupsController < ApplicationController
   def index
     if !user_signed_in?
       redirect_to home_path
-    end
-
-    if user_signed_in? && current_user.try(:admin?)
-      @groups = Group.where(user_id: current_user)
+    elsif current_user.admin?
+      redirect_to admin_portal_path
     else
-      @groups = Group.all
+      redirect_to portal_path
     end
   end
 
   # GET /groups/1
   # GET /groups/1.json
   def show
-    if !user_signed_in?
-      redirect_to home_path
-    end
   end
 
   # GET /groups/new
   def new
-    if !user_signed_in?
-      redirect_to home_path
-    end
-    @group = current_user.groups.build
+    @current_course = params[:course_id]
+    @group = Group.new
   end
 
   # GET /groups/1/edit
   def edit
-    if !user_signed_in?
-      redirect_to home_path
-    end
   end
 
   # POST /groups
   # POST /groups.json
   def create
-    @group = current_user.groups.build(group_params)
-
+    @group = Group.new(group_params)
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
@@ -86,6 +75,6 @@ class GroupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def group_params
-      params.require(:group).permit(:group_name, :section_id)
+      params.require(:group).permit(:group_name, :course_id)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_201423) do
+ActiveRecord::Schema.define(version: 2020_11_30_222822) do
 
   create_table "courses", force: :cascade do |t|
     t.integer "course_id"
@@ -38,12 +38,10 @@ ActiveRecord::Schema.define(version: 2020_11_30_201423) do
 
   create_table "groups", force: :cascade do |t|
     t.string "group_name"
-    t.integer "section_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "course_id", null: false
     t.index ["course_id"], name: "index_groups_on_course_id"
-    t.index ["section_id"], name: "index_groups_on_section_id"
   end
 
   create_table "incompletes", force: :cascade do |t|
@@ -66,10 +64,10 @@ ActiveRecord::Schema.define(version: 2020_11_30_201423) do
 
   create_table "ingroups", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "group"
-    t.string "references"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "group_id"
+    t.index ["group_id"], name: "index_ingroups_on_group_id"
     t.index ["user_id"], name: "index_ingroups_on_user_id"
   end
 

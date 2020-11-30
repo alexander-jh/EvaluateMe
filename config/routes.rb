@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'user_main', to: 'pages#uman', as: 'uman'
   get 'admin_main', to: 'pages#aman', as: 'aman'
   get 'group_main', to: 'pages#gman', as: 'gman'
+  get 'user_test', to: 'pages#utest', as: 'utest'
   resources :incourses
   resources :incompletes
   resources :evaluations

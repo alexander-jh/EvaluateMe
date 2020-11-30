@@ -3,10 +3,12 @@ class PagesController < ApplicationController
 
   def uman; end
 
-  def gman; end
+  def gman
+    @current_group = params[:group_id]
+  end
 
   def aman
-    @curr_id = params[:course_id]
+    @current_course = params[:course_id]
   end
 
   def portal; end

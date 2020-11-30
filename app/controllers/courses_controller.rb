@@ -11,7 +11,6 @@ class CoursesController < ApplicationController
     else
       redirect_to portal_path
     end
-    @courses = Course.where(user_id: current_user)
   end
 
   # GET /courses/1

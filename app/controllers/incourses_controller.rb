@@ -14,6 +14,7 @@ class IncoursesController < ApplicationController
 
   # GET /incourses/new
   def new
+    @current_course = params[:course_id]
     @incourse = Incourse.new
   end
 
@@ -24,8 +25,8 @@ class IncoursesController < ApplicationController
   # POST /incourses
   # POST /incourses.json
   def create
+    incourse_params[:user_id] = User.find_by(email: :user_id)
     @incourse = Incourse.new(incourse_params)
-
     respond_to do |format|
       if @incourse.save
         format.html { redirect_to @incourse, notice: 'Incourse was successfully created.' }
