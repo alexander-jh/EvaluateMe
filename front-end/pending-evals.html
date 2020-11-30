@@ -16,47 +16,30 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</head>
+</head> 
 
 <body>
-<div class= "nav-bar">
-  <p id="notice"><%= notice %></p>
-</div>
-<div class="evaluations-container">
-  <h2 class="pending-evals">Pending Evaluations</h2>
-
-  <table>
-    <thead>
-    <tr>
-      <th>Project</th>
-      <th>User</th>
-      <th>Score</th>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @evaluations.each do |evaluation| %>
-      <tr>
-        <td><%= evaluation.project_id %></td>
-        <td><%= evaluation.user_id %></td>
-        <td><%= evaluation.score %></td>
-        <td><%= evaluation.name %></td>
-        <td><%= link_to 'Show', evaluation %></td>
-        <td><%= link_to 'Edit', edit_evaluation_path(evaluation) %></td>
-        <td><%= link_to 'Destroy', evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-  <br>
-  <%= link_to 'New Evaluation', new_evaluation_path %>
-</div>
+  <div class= "nav-bar">
+      <div class="main">
+        <a href="index.html">EvaluateMe</a>
+      </div>
+      <div class="account">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="#logout">Logout</a>
+      </div>
+  </div>
+  <div class="evaluations-container">
+    <h2 class="pending-evals">Pending Evaluations</h2>
+      <table>
+        <tr>
+          <td>Student</td>
+          <td>Group</td>
+          <td>Actions</td>
+        </tr>
+        <tr>
+          <td>StudentName</td>
+          <td>GroupName</td>
+          <td><a href="evaluate.html">Evaluate</a></td>
+      </table>
 </body>
 </html>
-
-
-
-
-
