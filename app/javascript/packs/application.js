@@ -21,3 +21,7 @@ $(document).ready( function () {
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
 })
+
+$('#form_id').on('submit', function() {
+    $('#addListItem').modal('hide');
+});

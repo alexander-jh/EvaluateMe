@@ -32,16 +32,8 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(course_params.merge(user_id: current_user.id))
-    respond_to do |format|
-      if @course.save
-        # Adminof.create(user_id: current_user, course_id: @course.course_id)
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render :show, status: :created, location: @course }
-      else
-        format.html { render :new }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
-    end
+    @course.save
+    redirect_to admin_portal_url
   end
 
   # PATCH/PUT /courses/1
