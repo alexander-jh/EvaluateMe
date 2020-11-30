@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <!-- Makes page responsive. -->
+  <meta name= "viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>EvaluateMe - Evaluate</title>
+
+  <!-- Linking external CSS + Bootstrap CSS -->
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="styelsheet" href="href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head> 
+
+<body>
+  <div class= "nav-bar">
+      <div class="main">
+        <a href="index.html">EvaluateMe</a>
+      </div>
+      <div class="account">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="#logout">Logout</a>
+      </div>
+  </div>
+  <div class="evaluations-container">
+    <h2 class="evaluate">Evaluate</h2>
+    <form class="evalation-form">
+      <div class="rate-container">
+        <div class="box-header">Peer Review</div>
+          <select name="rating" autocomplete="off">
+            <option value="1.0">1.0</option>
+            <option value="1.5">1.5</option>
+            <option value="2.0">2.0</option>
+            <option value="2.5">2.5</option>
+            <option value="3.0">3.0</option>
+            <option value="3.5">3.5</option>
+            <option value="4.0">4.0</option>
+            <option value="4.5">4.5</option>
+            <option value="5.0">5.0</option>
+            <option value="5.5">5.5</option>
+            <option value="6.0">6.0</option>
+            <option value="6.5">6.5</option>
+            <option value="7.0">7.0</option>
+            <option value="7.5">7.5</option>
+            <option value="8.0">8.0</option>
+            <option value="8.5">8.5</option>
+            <option value="9.0">9.0</option>
+            <option value="9.5">9.5</option>
+            <option value="10.0">10.0</option>           
+          </select> 
+        </div>
+        <label for="comments">Comments</label><br>
+        <textarea id="textbox" rows="5" cols="50"></textarea>
+         <a href="#submit" class= "submit-btn">Submit</a>
+      </form>             
+    </div>
+</div>
+</body>
+</html>
