@@ -207,12 +207,3 @@ p{
   text-align: center;
   color: rgb(245, 245, 245);
 }
-
-.modal {
-  background: rgb(245, 245, 245);
-  position: absolute;
-  float: left;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
