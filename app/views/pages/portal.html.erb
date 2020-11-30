@@ -6,16 +6,15 @@
       <th>Subject</th>
       <th>Number</th>
       <th>Course Name</th>
-      <th>Complete</th>
     </thead>
     <tbody>
-    <% Incomplete.all.each do |user| %>
+    <% Incomplete.where(user_id: current_user.id).each do |i| %>
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%= i.course.course_id %></td>
+        <td><%= i.course.subject %></td>
+        <td><%= i.course.number %></td>
+        <td><%= i.course.name %></td>
+        <td>Select</td>
       </tr>
     <% end %>
     </tbody>
@@ -30,16 +29,16 @@
     <th>Subject</th>
     <th>Number</th>
     <th>Course Name</th>
-    <th>Admin</th>
+    <th>Mean Score</th>
     </thead>
     <tbody>
-    <% Incourse.all.each do |user| %>
+    <% Incourse.where(user_id: current_user.id).each do |c| %>
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%= c.course.course_id %></td>
+        <td><%= c.course.subject %></td>
+        <td><%= c.course.number %></td>
+        <td><%= c.course.name %></td>
+        <td><%= link_to "Report", uman_path(:course_id => c.course_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %></td>
       </tr>
     <% end %>
     </tbody>
