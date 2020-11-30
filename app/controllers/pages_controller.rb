@@ -5,6 +5,10 @@ class PagesController < ApplicationController
 
   def gman; end
 
+  def aman
+    @curr_id = params[:course_id]
+  end
+
   def portal; end
 
   def admin_portal; end

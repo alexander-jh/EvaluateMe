@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_144436) do
-
-  create_table "adminofs", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "course_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["course_id"], name: "index_adminofs_on_course_id"
-    t.index ["user_id"], name: "index_adminofs_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2020_11_30_201423) do
 
   create_table "courses", force: :cascade do |t|
     t.integer "course_id"
@@ -83,11 +74,11 @@ ActiveRecord::Schema.define(version: 2020_11_30_144436) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.integer "group_id", null: false
+    t.integer "course_id", null: false
     t.string "pname"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_projects_on_group_id"
+    t.index ["course_id"], name: "index_projects_on_course_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -105,8 +96,6 @@ ActiveRecord::Schema.define(version: 2020_11_30_144436) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "adminofs", "courses"
-  add_foreign_key "adminofs", "users"
   add_foreign_key "courses", "users"
   add_foreign_key "evaluations", "courses"
   add_foreign_key "evaluations", "projects"
@@ -117,5 +106,5 @@ ActiveRecord::Schema.define(version: 2020_11_30_144436) do
   add_foreign_key "incourses", "courses"
   add_foreign_key "incourses", "users"
   add_foreign_key "ingroups", "users"
-  add_foreign_key "projects", "groups"
+  add_foreign_key "projects", "groups", column: "course_id"
 end

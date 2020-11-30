@@ -5,14 +5,14 @@
     <thead>
     <th>Project Name</th>
     <th>Results</th>
-    <th>Modify</th>
+    <th>Action</th>
     </thead>
     <tbody>
-    <% Evaluation.all.each do |user| %>
+    <% Project.where(course_id: @curr_id).each do |p| %>
       <tr>
+        <td>p.pname</td>
         <td></td>
-        <td></td>
-        <td></td>
+        <td>Select/Delete</td>
       </tr>
     <% end %>
     </tbody>
