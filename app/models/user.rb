@@ -12,4 +12,8 @@ class User < ApplicationRecord
   has_many :adminofs
   has_many :courses, through: :adminofs
   has_many :incompletes
+
+  def admin?
+    admin
+  end
 end

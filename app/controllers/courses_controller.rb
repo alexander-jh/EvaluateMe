@@ -4,7 +4,14 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    if !user_signed_in?
+      redirect_to home_path
+    end
+
+    if user_signed_in? && !current_user.try(:admin?)
+      redirect_to home_path
+    end
+    @courses = Course.where(user_id: current_user)
   end
 
   # GET /courses/1
@@ -28,7 +35,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        Adminof.create(user_id: current_user, course_id: @course.course_id)
+        # Adminof.create(user_id: current_user, course_id: @course.course_id)
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
       else
