@@ -1,63 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-
-  <!-- Makes page responsive. -->
-  <meta name= "viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-  <title>EvaluateMe - Evaluate</title>
-
-  <!-- Linking external CSS + Bootstrap CSS -->
-  <link rel="stylesheet" href="stylesheets/style.css">
-  <link rel="styelsheet" href="href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</head>
-
-<body>
-<div class="evaluations-container">
-  <h2 class="evaluate">Evaluate - Peer Review</h2>
-  <%= form_with(model: evaluation, local: true) do |form| %>
-    <div class="rate-container">
-      <div class="box-header" >
-        <% if evaluation.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h2>
-            <ul>
-              <% evaluation.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
+<div id="modal-window" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <button class="close" data-dismiss="modal">x</button>
+    <div class="modal-content">
+      <%= form_tag evaluations_url %>
+      <%= Ingroup.where(group_id.Group.course_id :param[:course_id]).where(user_id :current_user.id).each do |mem| %>
+        <%- if mem.user_id != current_user.id %>
+          <%= form_with(model: @evaluation, local: true) do |form| %>
+            <% if @project.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h2>
+                <ul>
+                  <% @evaluation.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <h3>Evaluation for <% "#{mem.user_id.user.Fname} #{mem.user_id.user.Lname}" %></h3>
+            <div class="field">
+              <%= form.hidden_field_tag :project_id, :value => param[:project_id] %>
+              <%= form.hidden_field_tag :user_id, :value => mem.user_id %>
+              <%= form.label :score_tag %>
+              <%= form.number_field_tag :score %>
+            </div>
+            <div class="field">
+              <%= form.label :comment %>
+              <%= form.text_area :comment %>
+            </div>
+          <% end %>
         <% end %>
-
-        <div class="field">
-          <%= form.label :user_id %>
-          <%= form.text_field :user_id %>
-        </div>
-
-        <div class="field">
-          <%= form.label :score %>
-          <%= form.number_field :score %>
-        </div>
-
-        <label for="comments">Comments</label><br>
-        <textarea id="textbox" rows="5" cols="50"></textarea>
-        <a href="#submit" class= "submit-btn">Submit</a>
-
-        <div class="actions">
-          <%= form.submit %>
-        </div>
+      <% end %>
+      <div class="actions">
+        <%= Incomplete.delete(current_user.id) %>
+        <%= submit_tag "Submit" %>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>
-</div>
-</body>
-</html>
-
 
 

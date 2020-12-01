@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :send_evaluation]
 
   # GET /projects
   # GET /projects.json
@@ -16,6 +16,14 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+  end
+
+  def send_evaluation
+    project_id = params[':project_id']
+    users_in_proj = Incourse.where(course_id: project_id.course_id).where.not(Incomplete: { user_id: project_id.user_id })
+    users_in_proj.each do |user|
+      Incomplete.create project_id: project_id, user_id: user.user_id
+    end
   end
 
   # GET /projects/new

@@ -25,7 +25,6 @@ class IncoursesController < ApplicationController
   # POST /incourses
   # POST /incourses.json
   def create
-    incourse_params[:user_id] = User.find_by(email: :user_id)
     @incourse = Incourse.new(incourse_params)
     respond_to do |format|
       if @incourse.save

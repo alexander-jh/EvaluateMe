@@ -25,16 +25,7 @@ class IncompletesController < ApplicationController
   # POST /incompletes.json
   def create
     @incomplete = Incomplete.new(incomplete_params)
-
-    respond_to do |format|
-      if @incomplete.save
-        format.html { redirect_to @incomplete, notice: 'Incomplete was successfully created.' }
-        format.json { render :show, status: :created, location: @incomplete }
-      else
-        format.html { render :new }
-        format.json { render json: @incomplete.errors, status: :unprocessable_entity }
-      end
-    end
+    @incomplete.save
   end
 
   # PATCH/PUT /incompletes/1
