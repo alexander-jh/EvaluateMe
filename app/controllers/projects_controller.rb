@@ -31,7 +31,16 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-    @project.save
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_back(fallback_location: root_path) }
+        format.json { render :show, status: :created, location: @project }
+      else
+        format.html { render :new }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
 
   # PATCH/PUT /projects/1

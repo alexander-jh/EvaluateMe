@@ -29,7 +29,7 @@ class IncoursesController < ApplicationController
     @incourse = Incourse.new(incourse_params)
     respond_to do |format|
       if @incourse.save
-        format.html { redirect_to @incourse, notice: 'Incourse was successfully created.' }
+        format.html { redirect_back(fallback_location: root_path) }
         format.json { render :show, status: :created, location: @incourse }
       else
         format.html { render :new }
