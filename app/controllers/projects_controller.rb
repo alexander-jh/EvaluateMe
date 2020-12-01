@@ -16,10 +16,11 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @pid = params[:project_id]
   end
 
   def send_evaluation
-    project_id = params[':project_id']
+    project_id = params[:project_id]
     users_in_proj = Incourse.where(course_id: project_id.course_id).where.not(Incomplete: { user_id: project_id.user_id })
     users_in_proj.each do |user|
       Incomplete.create project_id: project_id, user_id: user.user_id
@@ -48,7 +49,6 @@ class ProjectsController < ApplicationController
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   # PATCH/PUT /projects/1

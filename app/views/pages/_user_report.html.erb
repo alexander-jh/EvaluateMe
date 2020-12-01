@@ -14,7 +14,7 @@
             <th>Comment</th>
             </thead>
             <tbody>
-            <% Evaluation.where(user_id: current_user.id).where(course_id: Course.find_by(id: params[:course_id]).id).each do |eval| %>
+            <%= Evaluation.where(user_id: current_user.id).where(course_id: Course.find_by(id: params[:course_id]).id).each do |eval| %>
               <tr>
                 <td><%= eval.project_id.project.name %></td>
                 <td><%= eval.score %></td>

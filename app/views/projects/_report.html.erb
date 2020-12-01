@@ -1,27 +1,34 @@
-<div id="contact-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <h1>Results</h1>
-      <div class="modal-body">
-        <table id="data-table" class="table table-striped table-bordered" style="width: 800px;">
-          <thead>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Average Score</th>
-            <th>Comments</th>
-          </thead>
-          <tbody>
-            <% Evaluation.all.each do |user| %>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+<div id="modal-window" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <button class="close" data-dismiss="modal">x</button>
+        <div class="modal-content">
+            <h1>
+                User Project Report
+            </h1>
+            <div class="modal-body">
+                <div class="container">
+                    <table id="data-table" class="table table-striped table-bordered" style="width: 800px;">
+                        <thead>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Score</th>
+                            <th>Comment</th>
+                        </thead>
+                        <tbody>
+                        <%= Evaluation.where(project_id: @pid).each do |eval| %>
+                        <tr>
+                            <td><% eval.user.Fname %></td>
+                            <td><% eval.user.Lname %></td>
+                            <td><% eval.score %></td>
+                            <td><% eval.comment %></td>
+                        </tr>
+                        <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
+
