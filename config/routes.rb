@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'group_main', to: 'pages#gman', as: 'gman'
   get 'user_test', to: 'pages#utest', as: 'utest'
   get 'show_project', to: 'projects#show', as: 'show_project'
+  delete 'project/:id', to: 'projects#destroy', as: 'destroy_project'
   post 'send_eval', to: 'projects#send_evaluation'
   resources :incourses
   resources :incompletes
