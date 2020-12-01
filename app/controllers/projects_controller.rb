@@ -4,7 +4,13 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    if !user_signed_in?
+      redirect_to home_path
+    elsif current_user.admin?
+      redirect_to admin_portal_path
+    else
+      redirect_to portal_path
+    end
   end
 
   # GET /projects/1
