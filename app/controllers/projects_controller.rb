@@ -13,8 +13,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /projects/1
-  # GET /projects/1.json
   def show
     @pid = params[:project_id]
   end
@@ -78,7 +76,7 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:id])
+      @project = Project.find(params[:project_id])
     end
 
     # Only allow a list of trusted parameters through.

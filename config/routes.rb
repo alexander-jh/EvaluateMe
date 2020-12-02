@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'admin_main', to: 'pages#aman', as: 'aman'
   get 'group_main', to: 'pages#gman', as: 'gman'
   get 'user_test', to: 'pages#utest', as: 'utest'
-  get 'show_project', to: 'projects#show', as: 'show_project'
+  get '/projects/:project_id', to: 'projects#show', as: 'pshow'
   post 'send_eval', to: 'projects#send_evaluation'
   resources :incourses
   resources :incompletes

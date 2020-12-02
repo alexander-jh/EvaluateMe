@@ -12,7 +12,7 @@
       <tr>
         <td><%= p.pname %></td>
         <td></td>
-        <td><%= link_to "Select", show_project_path(:project_id => p.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %>
+        <td><%= link_to "Select", pshow_path(:project_id => p.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %>
           /<%= link_to "Delete", p, method: :delete %>/<%= link_to "Send Evaluation", send_eval_path(:project_id => p.id) %></td>
       </tr>
     <% end %>
