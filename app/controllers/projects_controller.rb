@@ -14,14 +14,18 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @pid = params[:project_id]
+    @pid = params[:id]
   end
 
   def send_evaluation
-    project_id = params[:project_id]
-    users_in_proj = Incourse.where(course_id: project_id.course_id).where.not(Incomplete: { user_id: project_id.user_id })
-    users_in_proj.each do |user|
-      Incomplete.create project_id: project_id, user_id: user.user_id
+    @project = Project.find(params[:id])
+    if Incourse.where(course_id: @project.course_id).count.positive?
+      users_in_proj = Incourse.where(course_id: @project.course_id).reject { |r|
+        Incomplete.find_by(user_id: r.user_id)
+      }
+      users_in_proj.each do |user|
+        Incomplete.create project_id: @project.id, user_id: user.user_id
+      end
     end
   end
 
@@ -76,7 +80,7 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:project_id])
+      @project = Project.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
