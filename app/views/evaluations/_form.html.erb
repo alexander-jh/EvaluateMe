@@ -16,7 +16,7 @@
                 </ul>
               </div>
             <% end %>
-            <h3>Evaluation for <% "#{mem.user.Fname} #{mem.user.Lname}" %></h3>
+            <h3>Evaluation for <%= "#{mem.user.Fname} #{mem.user.Lname}" %></h3>
             <div class="field">
               <%= form.hidden_field :project_id, :value => params[:project_id] %>
               <%= form.hidden_field :user_id, :value => mem.user_id %>
