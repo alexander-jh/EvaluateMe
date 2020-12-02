@@ -16,7 +16,7 @@
         <tr>
           <td><%= p.pname %></td>
           <td></td>
-          <td><%= link_to "Select", pshow_path(:id => p.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %>
+          <td><%= link_to "Select", pshow_path(:id => p.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-preport'} %>
           /<%= link_to "Delete", p, method: :delete %>/<%= link_to "Send Evaluation", send_eval_path(:id => p.id), :remote => true %></td>
         </tr>
       <% end %>
@@ -26,7 +26,7 @@
     <h3><%= "No projects assigned." %></h3>
   <% end %>
 </div>
-<%= link_to 'New Project', new_project_path(:course_id => @current_course), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
+<%= link_to 'New Project', new_project_path(:course_id => @current_course), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-project'}  %>
 <h1>Groups</h1>
 <div class="container">
   <%- if Group.where(course_id: @current_course).count != 0 %>
@@ -50,7 +50,7 @@
     <h3><%= "No groups for section." %></h3>
   <% end %>
 </div>
-<%= link_to 'New Group', new_group_path(:course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
+<%= link_to 'New Group', new_group_path(:course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-group'}  %>
 <h1>Users</h1>
 <div class="container">
   <%- if Incourse.where(course_id: @current_course).count != 0 %>
@@ -69,7 +69,7 @@
             <td><%=c.user.Lname%></td>
             <td><%=c.user.email%></td>
             <td>N/A</td>
-            <td><%= link_to "Select", arep_path(:user_id => c.user_id, :course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %>
+            <td><%= link_to "Select", arep_path(:user_id => c.user_id, :course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-areport'} %>
           /<%= link_to "Delete", c, method: :delete %></td>
           </tr>
       <% end %>
@@ -79,5 +79,5 @@
     <h3><%= "No students enrolled." %></h3>
   <% end %>
 </div>
-<%= link_to 'Add User', new_incourse_path(:course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
+<%= link_to 'Add User', new_incourse_path(:course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-incourse'}  %>
 

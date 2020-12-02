@@ -13,7 +13,7 @@
           <td><%= i.project.course.subject %></td>
           <td><%= i.project.course.number %></td>
           <td><%= i.project.pname %></td>
-          <td><%= link_to "Select", new_evaluation_path(:project_id => i.project), {:remote => true, 'data-toggle' => "model", 'data-target' => '#modal-window'} %></td>
+          <td><%= link_to "Select", new_evaluation_path(:project_id => i.project), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window-eval'} %></td>
         </tr>
       <% end %>
       </tbody>
@@ -42,7 +42,7 @@
           <td><%= c.course.number %></td>
           <td><%= c.course.name %></td>
           <td></td>
-          <td><%= link_to "Report", uman_path(:course_id => c.course_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %></td>
+          <td><%= link_to "Report", uman_path(:course_id => c.course_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-ureport'} %></td>
         </tr>
       <% end %>
       </tbody>

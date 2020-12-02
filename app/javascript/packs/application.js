@@ -15,5 +15,9 @@ require("turbolinks").start()
 require("channels")
 
 $('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
+    $('#myInput').trigger('focus');
+})
+
+$('#button-close').on('click' , function() {
+    $('#myInput').off('focus')
 })

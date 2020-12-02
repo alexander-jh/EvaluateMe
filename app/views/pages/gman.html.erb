@@ -17,7 +17,7 @@
               <td><%=user.user.Lname%></td>
               <td><%=user.user.email%></td>
               <td>N/A</td>
-              <td><%= link_to 'Select', uman_path(:course_id => user.group.course_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
+              <td><%= link_to 'Select', uman_path(:course_id => user.group.course_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-ureport'}  %>
             /<%= link_to "Delete", user, method: :delete %></td>
             </tr>
           <% end %>
@@ -28,6 +28,6 @@
     <% end %>
   </div>
   <div class = "add-student">
-    <%= link_to 'Add User', new_ingroup_path(:group_id => @current_group, :course_id => Group.find(@current_group).course_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
+    <%= link_to 'Add User', new_ingroup_path(:group_id => @current_group, :course_id => Group.find(@current_group).course_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-ingroup'}  %>
   </div>
 </body>
