@@ -56,7 +56,7 @@ class IncoursesController < ApplicationController
   def destroy
     @incourse.destroy
     respond_to do |format|
-      format.html { redirect_to incourses_url, notice: 'Incourse was successfully destroyed.' }
+      format.html { redirect_back(fallback_location: root_path) }
       format.json { head :no_content }
     end
   end

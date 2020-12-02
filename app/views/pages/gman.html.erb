@@ -16,7 +16,7 @@
           <td><%=user.user.Lname%></td>
           <td><%=user.user.email%></td>
           <td>N/A</td>
-          <td>Select/Delete</td>
+          <td>Select/<%= link_to "Delete", user, method: :delete %></td>
         </tr>
       <% end %>
       </tbody>

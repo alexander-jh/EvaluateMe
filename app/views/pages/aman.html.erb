@@ -13,7 +13,7 @@
         <td><%= p.pname %></td>
         <td></td>
         <td><%= link_to "Select", show_project_path(:project_id => p.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %>
-          /<%= link_to "Delete", destroy_project_path(:project_id => p.id) %>/<%= link_to "Send Evaluation", send_eval_path(:project_id => p.id) %></td>
+          /<%= link_to "Delete", p, method: :delete %>/<%= link_to "Send Evaluation", send_eval_path(:project_id => p.id) %></td>
       </tr>
     <% end %>
     </tbody>
@@ -33,7 +33,7 @@
       <tr>
         <td><%= g.group_name %></td>
         <td><%= Ingroup.where(group_id: g.id).count %></td>
-        <td><%= link_to 'Select', gman_path(:group_id => g.id) %>/Delete</td>
+        <td><%= link_to 'Select', gman_path(:group_id => g.id) %>/<%= link_to "Delete", g, method: :delete %></td>
       </tr>
     <% end %>
     </tbody>
@@ -57,7 +57,7 @@
         <td><%=c.user.Lname%></td>
         <td><%=c.user.email%></td>
         <td>N/A</td>
-        <td>Select/Delete</td>
+        <td>Select/<%= link_to "Delete", c, method: :delete %></td>
       </tr>
     <% end %>
     </tbody>
