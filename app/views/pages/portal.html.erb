@@ -42,7 +42,7 @@
           <td><%= c.course.number %></td>
           <td><%= c.course.name %></td>
           <td></td>
-          <td><%= link_to "Report", uman_path(:course_id => c.course_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-ureport'} %></td>
+          <td><%= link_to "Report", urep_path(:course_id => c.course_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-ureport'} %></td>
         </tr>
       <% end %>
       </tbody>
