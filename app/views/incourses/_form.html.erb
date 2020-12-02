@@ -16,8 +16,10 @@
         <div class="modal-body">
           <div class="field">
             <%= form.label :user_id %>
-            <%= form.select :user_id, User.where.not(id: current_user.id)
-                                          .collect {|user| ["#{user.Lname}, #{user.Fname}", user.id]}%>
+            <%= form.select :user_id, User.where.not(id: current_user.id).reject{ |user|
+                Incourse.where(course_id: params[:course_id]).find_by(user_id: user.id)
+              }.
+                  collect {|user| ["#{user.Lname}, #{user.Fname}", user.id]}%>
             <%= form.hidden_field :course_id, :value => Course.find_by(id: params[:course_id]).id %>
           </div>
         </div>
