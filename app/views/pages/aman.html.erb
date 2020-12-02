@@ -16,7 +16,7 @@
         <tr>
           <td><%= p.pname %></td>
           <td><%= Evaluation.average(:score) %></td>
-          <td><%= link_to "Select", pshow_path(:id => p.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-preport'} %>
+          <td><%= link_to "Select", pshow_path(:id => p.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-preport#{p.id}"} %>
           /<%= link_to "Delete", p, method: :delete %>/<%= link_to "Send Evaluation", send_eval_path(:id => p.id), :remote => true %></td>
         </tr>
       <% end %>
@@ -69,7 +69,7 @@
             <td><%=c.user.Lname%></td>
             <td><%=c.user.email%></td>
             <td>N/A</td>
-            <td><%= link_to "Select", arep_path(:user_id => c.user_id, :course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-areport'} %>
+            <td><%= link_to "Select", arep_path(:user_id => c.user_id, :course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-areport#{c.user_id}"} %>
           /<%= link_to "Delete", c, method: :delete %></td>
           </tr>
       <% end %>

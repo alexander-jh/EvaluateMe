@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'group_main', to: 'pages#gman', as: 'gman'
   get 'user_test', to: 'pages#utest', as: 'utest'
   get '/projects/show/:id', to: 'projects#show', as: 'pshow'
-  get '/groups/show/:id', to: 'groups#show', as: 'gshow'
+  get 'group_report', to: 'pages#group_report', as: 'grep'
   get '/projects/send_eval/:id', to: 'projects#send_evaluation', as: 'send_eval'
   resources :incourses
   resources :incompletes

@@ -17,7 +17,7 @@
               <td><%=user.user.Lname%></td>
               <td><%=user.user.email%></td>
               <td>N/A</td>
-              <td><%= link_to 'Select', uman_path(:course_id => user.group.course_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-ureport'}  %>
+              <td><%= link_to 'Select', grep_path(:course_id => user.group.course_id, :user_id => user.user_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-greport#{user.user_id}"}  %>
             /<%= link_to "Delete", user, method: :delete %></td>
             </tr>
           <% end %>
