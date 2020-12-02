@@ -11,6 +11,12 @@
   <div class="account">
     <%- if user_signed_in? %>
       <%- if current_user.admin? %>
+        <%- if current_page?(controller: 'pages', action:'aman') || current_page?(controller: 'pages', action:'gman') %>
+          <%- if current_page?(controller: 'pages', action:'gman') %>
+            <%= link_to 'Course Manage', url_for(:back), class: "signup-btn" %>
+          <% end %>
+          <%= link_to 'Admin Portal', url_for(:back), class: "signup-btn" %>
+        <% end %>
         <%= link_to 'Add Course', new_course_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "signup-btn"} %>
       <% end %>
       <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "signup-btn" %>
