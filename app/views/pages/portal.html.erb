@@ -10,11 +10,11 @@
     <tbody>
     <% Incomplete.where(user_id: current_user.id).each do |i| %>
       <tr>
-        <td><%= i.course.course_id %></td>
-        <td><%= i.course.subject %></td>
-        <td><%= i.course.number %></td>
-        <td><%= i.course.name %></td>
-        <td>Select</td>
+        <td><%= i.project.course.course_id %></td>
+        <td><%= i.project.course.subject %></td>
+        <td><%= i.project.course.number %></td>
+        <td><%= i.project.course.name %></td>
+        <td><%= link_to "Select", new_evaluation_path(:project_id => i.project), {:remote => true, 'data-toggle' => "model", 'data-target' => '#modal-window'} %></td>
       </tr>
     <% end %>
     </tbody>
