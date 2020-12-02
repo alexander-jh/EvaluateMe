@@ -15,7 +15,7 @@
       <% Project.where(course_id: @current_course).each do |p| %>
         <tr>
           <td><%= p.pname %></td>
-          <td></td>
+          <td><%= Evaluation.average(:score) %></td>
           <td><%= link_to "Select", pshow_path(:id => p.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-preport'} %>
           /<%= link_to "Delete", p, method: :delete %>/<%= link_to "Send Evaluation", send_eval_path(:id => p.id), :remote => true %></td>
         </tr>
