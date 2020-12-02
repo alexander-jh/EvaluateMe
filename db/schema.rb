@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_222822) do
+ActiveRecord::Schema.define(version: 2020_12_02_180215) do
 
   create_table "courses", force: :cascade do |t|
     t.integer "course_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_222822) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_incompletes_on_project_id"
+    t.index ["user_id", "project_id"], name: "index_incompletes_on_user_id_and_project_id", unique: true
     t.index ["user_id"], name: "index_incompletes_on_user_id"
   end
 

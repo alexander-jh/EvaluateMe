@@ -20,9 +20,7 @@ class ProjectsController < ApplicationController
   def send_evaluation
     @project = Project.find(params[:id])
     if Incourse.where(course_id: @project.course_id).count.positive?
-      users_in_proj = Incourse.where(course_id: @project.course_id).reject { |r|
-        Incomplete.find_by(user_id: r.user_id)
-      }
+      users_in_proj = Incourse.where(course_id: @project.course_id)
       users_in_proj.each do |user|
         Incomplete.create project_id: @project.id, user_id: user.user_id
       end
@@ -70,6 +68,8 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    Incomplete.where(project_id: @project.id, &:destroy)
+    Evaluation.where(project_id: @project.id, &:destroy)
     @project.destroy
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_path) }

@@ -2,33 +2,35 @@
     <div class="modal-dialog">
         <button class="close" data-dismiss="modal">x</button>
         <div class="modal-content">
-            <h1>
-                User Project Report
-            </h1>
+            <h3>
+              Report for <%= "#{Project.find(@pid).pname}" %>
+            </h3>
             <div class="modal-body">
                 <div class="container">
-                    <table id="data-table" class="table table-striped table-bordered" style="width: 800px;">
-                        <thead>
+                    <%- if Evaluation.where(project_id: @pid).count != 0 %>
+                      <table id="data-table" class="table table-striped table-bordered" style="width: 800px;">
+                          <thead>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Score</th>
                             <th>Comment</th>
-                        </thead>
-                        <tbody>
-                        <%= Evaluation.where(project_id: @pid).each do |eval| %>
-                        <tr>
-                            <td><% eval.user.Fname %></td>
-                            <td><% eval.user.Lname %></td>
-                            <td><% eval.score %></td>
-                            <td><% eval.comment %></td>
-                        </tr>
+                          </thead>
+                          <tbody>
+                          <%= Evaluation.where(project_id: @pid).each do |eval| %>
+                            <tr>
+                              <td><% eval.user.Fname %></td>
+                              <td><% eval.user.Lname %></td>
+                              <td><% eval.score %></td>
+                              <td><% eval.comment %></td>
+                          </tr>
                         <% end %>
                         </tbody>
-                    </table>
+                      </table>
+                    <% else %>
+                      <h3><%= "No grades to report." %></h3>
+                    <% end %>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-

@@ -3,18 +3,16 @@
   <%- if Incomplete.where(user_id: current_user.id).count != 0 %>
     <table id="data-table" class="table table-striped table-bordered" style="width: 800px;">
       <thead>
-        <th>Section</th>
         <th>Subject</th>
         <th>Number</th>
-        <th>Course Name</th>
+        <th>Project Name</th>
       </thead>
       <tbody>
       <% Incomplete.where(user_id: current_user.id).each do |i| %>
         <tr>
-          <td><%= i.project.course.course_id %></td>
           <td><%= i.project.course.subject %></td>
           <td><%= i.project.course.number %></td>
-          <td><%= i.project.course.name %></td>
+          <td><%= i.project.pname %></td>
           <td><%= link_to "Select", new_evaluation_path(:project_id => i.project), {:remote => true, 'data-toggle' => "model", 'data-target' => '#modal-window'} %></td>
         </tr>
       <% end %>
@@ -43,6 +41,7 @@
           <td><%= c.course.subject %></td>
           <td><%= c.course.number %></td>
           <td><%= c.course.name %></td>
+          <td></td>
           <td><%= link_to "Report", uman_path(:course_id => c.course_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %></td>
         </tr>
       <% end %>

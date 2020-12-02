@@ -1,6 +1,6 @@
-<h1>Manage <%="#{Course.find(params[:course_id]).subject}
-                      #{Course.find(params[:course_id]).number}
-                       Section #{Course.find(params[:course_id]).course_id}" %>
+<h1><%="#{Course.find(params[:course_id]).subject}
+        #{Course.find(params[:course_id]).number}:
+       Section #{Course.find(params[:course_id]).course_id}" %>
 </h1>
 <h1>Projects</h1>
 <div class="container">
