@@ -16,7 +16,8 @@
           <td><%=user.user.Lname%></td>
           <td><%=user.user.email%></td>
           <td>N/A</td>
-          <td>Select/<%= link_to "Delete", user, method: :delete %></td>
+          <td><%= link_to 'Select', uman_path(:course_id => user.group.course_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
+            /<%= link_to "Delete", user, method: :delete %></td>
         </tr>
       <% end %>
       </tbody>
