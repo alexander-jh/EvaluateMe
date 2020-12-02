@@ -17,9 +17,11 @@
           <div class="field">
               <%= form.label :user_id %>
               <%= form.select :user_id, Incourse.where.not(user_id: current_user).
-                where(course_id: Group.find_by(id: params[:group_id]).course_id).
+                where(course_id: params[:course_id]).reject{ |group|
+                Ingroup.where(group_id: params[:group_id]).find_by(user_id: group.user_id)
+                }.
                 collect {|user| ["#{user.user.Lname}, #{user.user.Fname}", user.user.id]}%>
-              <%= form.hidden_field :group_id, :value => Group.find_by(id: params[:group_id]).id %>
+              <%= form.hidden_field :group_id, :value => params[:group_id] %>
           </div>
         </div>
         <div class="modal-footer">
