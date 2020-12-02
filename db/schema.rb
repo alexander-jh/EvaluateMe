@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_02_180215) do
+ActiveRecord::Schema.define(version: 2020_12_02_181023) do
 
   create_table "courses", force: :cascade do |t|
     t.integer "course_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_12_02_180215) do
     t.integer "course_id", null: false
     t.index ["course_id"], name: "index_evaluations_on_course_id"
     t.index ["project_id"], name: "index_evaluations_on_project_id"
+    t.index ["user_id", "project_id"], name: "index_evaluations_on_user_id_and_project_id", unique: true
     t.index ["user_id"], name: "index_evaluations_on_user_id"
   end
 

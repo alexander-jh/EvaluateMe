@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
   belongs_to :course
-  has_many :incompletes
-  has_many :evaluations
+  has_many :incompletes, dependent: :destroy
+  has_many :evaluations, dependent: :destroy
 end
