@@ -29,7 +29,7 @@ class IngroupsController < ApplicationController
 
     respond_to do |format|
       if @ingroup.save
-        format.html { redirect_to @ingroup, notice: 'Ingroup was successfully created.' }
+        format.html { redirect_back(fallback_location: root_path) }
         format.json { render :show, status: :created, location: @ingroup }
       else
         format.html { render :new }
@@ -57,7 +57,7 @@ class IngroupsController < ApplicationController
   def destroy
     @ingroup.destroy
     respond_to do |format|
-      format.html { redirect_to ingroups_url, notice: 'Ingroup was successfully destroyed.' }
+      format.html { redirect_back(fallback_location: root_path) }
       format.json { head :no_content }
     end
   end
