@@ -1,5 +1,5 @@
 <body>
-  <h1>Group Management</h1>
+  <h1>Manage Group: <%= "#{Group.find(params[:group_id]).group_name}" %></h1>
   <div class="students-container">
     <%- if Ingroup.where(group_id: @current_group).count != 0 %>
       <table id="example" class="table table-striped table-bordered" style="width: 1000px;">
