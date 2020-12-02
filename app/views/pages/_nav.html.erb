@@ -13,7 +13,7 @@
       <%- if current_user.admin? %>
         <%- if current_page?(controller: 'pages', action:'aman') || current_page?(controller: 'pages', action:'gman') %>
           <%- if current_page?(controller: 'pages', action:'gman') %>
-            <%= link_to 'Course Manage', url_for(:back), class: "signup-btn" %>
+            <%= link_to 'Course Manage', aman_path(:course_id => params[:course_id]), class: "signup-btn" %>
           <% end %>
           <%= link_to 'Admin Portal', admin_portal_path, class: "signup-btn" %>
         <% end %>

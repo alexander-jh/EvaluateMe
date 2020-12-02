@@ -41,7 +41,7 @@
           <tr>
             <td><%= g.group_name %></td>
             <td><%= Ingroup.where(group_id: g.id).count %></td>
-            <td><%= link_to 'Select', gman_path(:group_id => g.id) %>/<%= link_to "Delete", g, method: :delete %></td>
+            <td><%= link_to 'Select', gman_path(:group_id => g.id, :course_id => @current_course) %>/<%= link_to "Delete", g, method: :delete %></td>
           </tr>
         <% end %>
       </tbody>
