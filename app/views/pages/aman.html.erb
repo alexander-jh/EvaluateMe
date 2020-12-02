@@ -57,7 +57,8 @@
         <td><%=c.user.Lname%></td>
         <td><%=c.user.email%></td>
         <td>N/A</td>
-        <td>Select/<%= link_to "Delete", c, method: :delete %></td>
+        <td><%= link_to "Select", arep_path(:user_id => c.id, :course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %>
+          /<%= link_to "Delete", c, method: :delete %></td>
       </tr>
     <% end %>
     </tbody>

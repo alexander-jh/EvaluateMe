@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'portal', to: 'pages#portal', as: 'portal'
   get 'admin_portal', to: 'pages#admin_portal', as: 'admin_portal'
   get 'user_main', to: 'pages#uman', as: 'uman'
+  get 'admin_report', to: 'pages#admin_report', as: 'arep'
   get 'admin_main', to: 'pages#aman', as: 'aman'
   get 'group_main', to: 'pages#gman', as: 'gman'
   get 'user_test', to: 'pages#utest', as: 'utest'
