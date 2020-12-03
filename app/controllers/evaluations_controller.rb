@@ -29,6 +29,7 @@ class EvaluationsController < ApplicationController
   def create
     @evaluation = Evaluation.new(evaluation_params)
     @evaluation.save
+    Incomplete.where(project_id: @evaluation.project_id).find_by(user_id: current_user.id).destroy
   end
 
   # PATCH/PUT /evaluations/1
@@ -63,6 +64,6 @@ class EvaluationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def evaluation_params
-      params.require(:evaluation).permit(:project_id, :user_id, :score, :name)
+      params.require(:evaluation).permit(:project_id, :user_id, :course_id, :score, :name)
     end
 end
