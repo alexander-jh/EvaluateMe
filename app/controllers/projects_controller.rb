@@ -22,7 +22,9 @@ class ProjectsController < ApplicationController
     if Incourse.where(course_id: @project.course_id).count.positive?
       users_in_proj = Incourse.where(course_id: @project.course_id)
       users_in_proj.each do |user|
-        Incomplete.create project_id: @project.id, user_id: user.user_id
+        if Complete.where(project_id: @project.id).where(user_id: user.user_id).count.zero?
+          Incomplete.create project_id: @project.id, user_id: user.user_id
+        end
       end
     end
   end
