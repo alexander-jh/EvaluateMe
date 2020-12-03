@@ -68,11 +68,13 @@
             <td><%=c.user.Fname%></td>
             <td><%=c.user.Lname%></td>
             <td><%=c.user.email%></td>
-            <td>N/A</td>
+            <%= Evaluation.where(user_id: current_user.id).where(course_id: Course.find_by(id: params[:course_id]).id).each do |eval| %>
+              <td> Evaluation.average(:score) </td>
+            <% end %>
             <td><%= link_to "Select", arep_path(:user_id => c.user_id, :course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-areport#{c.user_id}"} %>
           /<%= link_to "Delete", c, method: :delete %></td>
           </tr>
-      <% end %>
+        <% end %>
       </tbody>
     </table>
   <% else %>
