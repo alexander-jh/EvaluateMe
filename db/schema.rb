@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_201245) do
-
-  create_table "completes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "project_id"
-    t.index ["project_id"], name: "index_completes_on_project_id"
-    t.index ["user_id"], name: "index_completes_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2020_12_02_181659) do
 
   create_table "courses", force: :cascade do |t|
     t.integer "course_id"
@@ -34,12 +27,13 @@ ActiveRecord::Schema.define(version: 2020_12_03_201245) do
     t.integer "project_id", null: false
     t.integer "user_id", null: false
     t.integer "score"
-    t.string "comment"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "course_id", null: false
     t.index ["course_id"], name: "index_evaluations_on_course_id"
     t.index ["project_id"], name: "index_evaluations_on_project_id"
+    t.index ["user_id", "project_id"], name: "index_evaluations_on_user_id_and_project_id", unique: true
     t.index ["user_id"], name: "index_evaluations_on_user_id"
   end
 
