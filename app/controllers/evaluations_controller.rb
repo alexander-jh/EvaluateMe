@@ -28,16 +28,7 @@ class EvaluationsController < ApplicationController
   # POST /evaluations.json
   def create
     @evaluation = Evaluation.new(evaluation_params)
-
-    respond_to do |format|
-      if @evaluation.save
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
-        format.json { render :show, status: :created, location: @evaluation }
-      else
-        format.html { render :new }
-        format.json { render json: @evaluation.errors, status: :unprocessable_entity }
-      end
-    end
+    @evaluation.save
   end
 
   # PATCH/PUT /evaluations/1
