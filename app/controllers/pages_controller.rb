@@ -1,5 +1,13 @@
 class PagesController < ApplicationController
-  def home; end
+  def home
+    if user_signed_in?
+      if current_user.admin
+        redirect_to admin_portal_url
+      else
+        redirect_to portal_url
+      end
+    end
+  end
 
   def uman; end
 
