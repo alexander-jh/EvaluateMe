@@ -7,25 +7,21 @@
                   .find(params[:project_id]).course_id)).each do |mem| %>
           <%- if mem.user_id != current_user.id %>
             <h3>Evaluation for <%= "#{mem.user.Fname} #{mem.user.Lname}" %></h3>
-            <%= fields_for :evaluation do |form| %>
-              <div class="field">
-                <%= form.hidden_field :project_id, :value => Project.find(params[:project_id]).id %>
-                <%= form.hidden_field :user_id, :value => mem.user_id %>
-                <%= form.hidden_field :course_id, :value => Project.find(params[:project_id]).course_id %>
-                <%= form.label :score %>
-                <%= form.number_field :score %>
-              </div>
-              <div class="field">
-                <%= form.label :comment %>
-                <%= form.text_area :comment %>
-              </div>
-            <% end %>
+            <div class="field">
+              <%= hidden_field_tag :evaluation_project_id, "", :name=> "evaluation[][project_id]", :value => Project.find(params[:project_id]).id %>
+              <%= hidden_field_tag :evaluation_user_id, "", :name=> "evaluation[][user_id]", :value => mem.user_id %>
+              <%= hidden_field_tag :evaluation_course_id, "", :name=> "evaluation[][course_id]", :value => Project.find(params[:project_id]).course_id %>
+              Score:
+              <%= number_field_tag :evaluation_score, "", :name=> "evaluation[][score]" %>
+              Comment:
+              <%= text_area_tag :evaluation_comment, "", :name=> "evaluation[][comment]" %>
+            </div>
           <% end %>
         <% end %>
         <div class="actions">
           <%= submit_tag "Submit" %>
         </div>
-    <% end %>
+      <% end %>
     </div>
   </div>
 </div>

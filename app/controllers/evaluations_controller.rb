@@ -27,24 +27,24 @@ class EvaluationsController < ApplicationController
   # POST /evaluations
   # POST /evaluations.json
   def create
-    @evaluation = Evaluation.new(evaluation_params)
-    respond_to do |format|
-      if @evaluation.save
-        format.html { redirect_back(fallback_location: root_path) }
-        format.json { render :show, status: :created, location: @evaluation }
-      else
-        format.html { render :new }
-        format.json { render json: @evaluation.errors, status: :unprocessable_entity }
-      end
+    eval = params[:evaluation]
+    eval.each do |param|
+      @evaluation = Evaluation.new(project_id: param[:project_id], user_id: param[:user_id],
+                                   course_id: param[:course_id], score: param[:score],
+                                   comment: param[:comment])
+      @evaluation.save
     end
     Incomplete.where(project_id: @evaluation.project_id).find_by(user_id: current_user.id).destroy
+    Complete.create(user_id: current_user.id, project_id: eval[0][:project_id])
+    flash[:notice] = "Evaluations recieved."
+    redirect_to portal_url
   end
 
   # PATCH/PUT /evaluations/1
   # PATCH/PUT /evaluations/1.json
   def update
     respond_to do |format|
-      if @evaluation.update(evaluation_params)
+      if @evaluation.update
         format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
         format.json { render :show, status: :ok, location: @evaluation }
       else
@@ -68,10 +68,5 @@ class EvaluationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_evaluation
       @evaluation = Evaluation.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def evaluation_params
-      params.require(:evaluation).permit(:project_id, :user_id, :course_id, :score, :comment)
     end
 end
