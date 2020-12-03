@@ -29,6 +29,7 @@ class IngroupsController < ApplicationController
 
     respond_to do |format|
       if @ingroup.save
+        flast[:alert] = "Student successfully added to group."
         format.html { redirect_back(fallback_location: root_path) }
         format.json { render :show, status: :created, location: @ingroup }
       else

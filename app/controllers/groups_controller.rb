@@ -34,6 +34,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     respond_to do |format|
       if @group.save
+        flash[:alert] = "Group created successfully."
         format.html { redirect_back(fallback_location: root_path) }
         format.json { render :show, status: :created, location: @group }
       else

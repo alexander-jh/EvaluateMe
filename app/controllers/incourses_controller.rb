@@ -28,6 +28,7 @@ class IncoursesController < ApplicationController
     @incourse = Incourse.new(incourse_params)
     respond_to do |format|
       if @incourse.save
+        flash[:alert] = "Student successfully added to course."
         format.html { redirect_back(fallback_location: root_path) }
         format.json { render :show, status: :created, location: @incourse }
       else

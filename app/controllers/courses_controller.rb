@@ -32,6 +32,7 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params.merge(user_id: current_user.id))
     @course.save
+    flash[:alert] = "Course added successfully."
     redirect_to admin_portal_url
   end
 

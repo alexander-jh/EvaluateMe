@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
         end
       end
     end
+    flash[:alert] = "Evaluations sent."
   end
 
   # GET /projects/new
@@ -44,6 +45,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     respond_to do |format|
       if @project.save
+        flash[:alert] = "Project created successfully."
         format.html { redirect_back(fallback_location: root_path) }
         format.json { render :show, status: :created, location: @project }
       else
