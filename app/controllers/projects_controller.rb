@@ -28,6 +28,7 @@ class ProjectsController < ApplicationController
       end
     end
     flash[:alert] = "Evaluations sent."
+    redirect_to aman_url(:course_id => @project.course_id)
   end
 
   # GET /projects/new

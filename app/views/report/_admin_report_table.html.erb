@@ -17,7 +17,7 @@
               <tbody>
                 <%- Evaluation.where(user_id: params[:user_id]).where(course_id: Course.find_by(id: params[:course_id]).id).each do |eval| %>
                   <tr>
-                    <td><%= eval.project_id.project.name %></td>
+                    <td><%= eval.project.pname %></td>
                     <td><%= eval.score %></td>
                     <td><%= eval.comment %></td>
                   </tr>

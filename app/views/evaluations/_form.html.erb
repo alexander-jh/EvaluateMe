@@ -3,8 +3,7 @@
     <button class="close" data-dismiss="modal" data-target="modal-window-eval">x</button>
     <div class="modal-content">
       <%= form_tag evaluations_path(method: :post) do |f| %>
-        <% Ingroup.where(group_id: Group.where(course_id: Project
-                  .find(params[:project_id]).course_id)).each do |mem| %>
+        <% Ingroup.where(group: Ingroup.find_by(user_id: current_user.id).group_id).each do |mem| %>
           <%- if mem.user_id != current_user.id %>
             <h3>Evaluation for <%= "#{mem.user.Fname} #{mem.user.Lname}" %></h3>
             <div class="field">

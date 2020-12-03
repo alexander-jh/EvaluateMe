@@ -7,6 +7,8 @@
         <th>Subject</th>
         <th>Number</th>
         <th>Course Name</th>
+        <th>Enrolled</th>
+        <th>Mean</th>
         <th></th>
       </thead>
       <tbody>
@@ -16,6 +18,12 @@
           <td><%= course.subject %></td>
           <td><%= course.number %></td>
           <td><%= course.name %></td>
+          <td><%= Incourse.where(course_id: course.id).count %></td>
+          <%- if Evaluation.where(course_id: course.id).count.zero? %>
+            <td><%= "N/A" %></td>
+          <% else %>
+            <td><%= Evaluation.where(course_id: course.id).average(:score) %></td>
+          <% end %>
           <td><%= link_to 'Select', aman_path(:course_id => course.id) %></td>
         </tr>
       <% end %>

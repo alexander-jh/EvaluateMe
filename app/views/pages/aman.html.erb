@@ -9,13 +9,17 @@
       <thead>
         <th>Project Name</th>
         <th>Mean Score</th>
+        <th>Completed</th>
+        <th>Incomplete</th>
         <th>Action</th>
       </thead>
       <tbody>
       <%- Project.where(course_id: @current_course).each do |p| %>
         <tr>
           <td><%= p.pname %></td>
-          <td><%= Evaluation.average(:score) %></td>
+          <td><%= Evaluation.where(project_id: p.id).average(:score) %></td>
+          <td><%= Complete.where(project_id: p.id).count %></td>
+          <td><%= Incomplete.where(project_id: p.id).count %></td>
           <td><%= link_to "Select", pshow_path(:id => p.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-preport#{p.id}"} %>
           /<%= link_to "Delete", p, method: :delete %>/<%= link_to "Send Evaluation", send_eval_path(:id => p.id), :remote => true %></td>
         </tr>
@@ -34,6 +38,7 @@
       <thead>
         <th>Group Name</th>
         <th># of Members</th>
+        <th>Mean</th>
         <th>Modify</th>
       </thead>
       <tbody>
@@ -41,6 +46,7 @@
           <tr>
             <td><%= g.group_name %></td>
             <td><%= Ingroup.where(group_id: g.id).count %></td>
+            <td><%= Evaluation.where(user_id: Ingroup.where(group_id: g.id)).average(:score) %></td>
             <td><%= link_to 'Select', gman_path(:group_id => g.id, :course_id => @current_course) %>/<%= link_to "Delete", g, method: :delete %></td>
           </tr>
         <% end %>
@@ -68,7 +74,7 @@
             <td><%=c.user.Fname%></td>
             <td><%=c.user.Lname%></td>
             <td><%=c.user.email%></td>
-            <td> <%= Evaluation.where(user_id: c.user_id).average(:score) %> </td>
+            <td> <%= Evaluation.where(user_id: c.user_id).where(course_id: c.course_id).average(:score) %> </td>
             <td><%= link_to "Select", arep_path(:user_id => c.user_id, :course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-areport#{c.user_id}"} %>
           /<%= link_to "Delete", c, method: :delete %></td>
           </tr>

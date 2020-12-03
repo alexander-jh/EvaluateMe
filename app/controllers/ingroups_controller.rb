@@ -26,10 +26,9 @@ class IngroupsController < ApplicationController
   # POST /ingroups.json
   def create
     @ingroup = Ingroup.new(ingroup_params)
-
     respond_to do |format|
       if @ingroup.save
-        flast[:alert] = "Student successfully added to group."
+        flash[:alert] = "Student successfully added to group."
         format.html { redirect_back(fallback_location: root_path) }
         format.json { render :show, status: :created, location: @ingroup }
       else
