@@ -28,7 +28,15 @@ class EvaluationsController < ApplicationController
   # POST /evaluations.json
   def create
     @evaluation = Evaluation.new(evaluation_params)
-    @evaluation.save
+    respond_to do |format|
+      if @evaluation.save
+        format.html { redirect_back(fallback_location: root_path) }
+        format.json { render :show, status: :created, location: @evaluation }
+      else
+        format.html { render :new }
+        format.json { render json: @evaluation.errors, status: :unprocessable_entity }
+      end
+    end
     Incomplete.where(project_id: @evaluation.project_id).find_by(user_id: current_user.id).destroy
   end
 
