@@ -12,7 +12,7 @@
         <th>Action</th>
       </thead>
       <tbody>
-      <% Project.where(course_id: @current_course).each do |p| %>
+      <%- Project.where(course_id: @current_course).each do |p| %>
         <tr>
           <td><%= p.pname %></td>
           <td><%= Evaluation.average(:score) %></td>
@@ -37,7 +37,7 @@
         <th>Modify</th>
       </thead>
       <tbody>
-        <% Group.where(course_id: @current_course).each do |g| %>
+        <%- Group.where(course_id: @current_course).each do |g| %>
           <tr>
             <td><%= g.group_name %></td>
             <td><%= Ingroup.where(group_id: g.id).count %></td>
@@ -63,14 +63,12 @@
         <th>Action</th>
       </thead>
       <tbody>
-        <% Incourse.where(course_id: @current_course).each do |c| %>
+        <%- Incourse.where(course_id: @current_course).each do |c| %>
           <tr>
             <td><%=c.user.Fname%></td>
             <td><%=c.user.Lname%></td>
             <td><%=c.user.email%></td>
-            <%= Evaluation.where(user_id: current_user.id).where(course_id: Course.find_by(id: params[:course_id]).id).each do |eval| %>
-              <td> <%= Evaluation.average(:score) %> </td>
-            <% end %>
+            <td> <%= Evaluation.where(user_id: c.user_id).average(:score) %> </td>
             <td><%= link_to "Select", arep_path(:user_id => c.user_id, :course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-areport#{c.user_id}"} %>
           /<%= link_to "Delete", c, method: :delete %></td>
           </tr>
