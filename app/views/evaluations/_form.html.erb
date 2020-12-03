@@ -5,25 +5,27 @@
       <%= form_tag evaluations_path(method: :post) do |f| %>
         <% Ingroup.where(group_id: Group.where(course_id: Project
                   .find(params[:project_id]).course_id)).each do |mem| %>
-          <h3>Evaluation for <%= "#{mem.user.Fname} #{mem.user.Lname}" %></h3>
-          <%= fields_for :evaluation do |form| %>
-            <div class="field">
-              <%= form.label :score %>
-              <%= form.number_field :score %>
-            </div>
-            <div class="field">
-              <%= form.label :name %>
-              <%= text_area_tag :name %>
-              <%= form.hidden_field :project_id, :value => params[:project_id] %>
-              <%= form.hidden_field :user_id, :value => mem.user_id %>
-              <%= form.hidden_field :course_id, :value => Project.find(params[:project_id]).course_id %>
-            </div>
+          <%- if mem.user_id != current_user.id %>
+            <h3>Evaluation for <%= "#{mem.user.Fname} #{mem.user.Lname}" %></h3>
+            <%= fields_for :evaluation do |form| %>
+              <div class="field">
+                <%= form.hidden_field :project_id, :value => Project.find(params[:project_id]).id %>
+                <%= form.hidden_field :user_id, :value => mem.user_id %>
+                <%= form.hidden_field :course_id, :value => Project.find(params[:project_id]).course_id %>
+                <%= form.label :score %>
+                <%= form.number_field :score %>
+              </div>
+              <div class="field">
+                <%= form.label :comment %>
+                <%= form.text_area :comment %>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
         <div class="actions">
           <%= submit_tag "Submit" %>
         </div>
-      <% end %>
+    <% end %>
     </div>
   </div>
 </div>

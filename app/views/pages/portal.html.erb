@@ -8,7 +8,7 @@
         <th>Project Name</th>
       </thead>
       <tbody>
-      <% Incomplete.where(user_id: current_user.id).each do |i| %>
+      <%- Incomplete.where(user_id: current_user.id).each do |i| %>
         <tr>
           <td><%= i.project.course.subject %></td>
           <td><%= i.project.course.number %></td>

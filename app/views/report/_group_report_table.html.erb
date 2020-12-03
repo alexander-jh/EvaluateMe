@@ -2,9 +2,9 @@
   <div class="modal-dialog">
     <button class="close" data-dismiss="modal" data-target="modal-window-greport<%="#{params[:user_id]}"%>">x</button>
     <div class="modal-content">
-      <h1>
+      <h3>
         Grade Report for <%= "#{User.find(params[:user_id]).Fname} #{User.find(params[:user_id]).Lname}" %>
-      </h1>
+      </h3>
       <div class="modal-body">
         <div class="container">
           <%- if Evaluation.where(user_id: params[:user_id]).where(course_id: params[:course_id]).count != 0 %>
@@ -15,7 +15,7 @@
                 <th>Comment</th>
               </thead>
               <tbody>
-                <%= Evaluation.where(user_id: params[:user_id]).where(course_id: params[:course_id]).each do |eval| %>
+                <%- Evaluation.where(user_id: params[:user_id]).where(course_id: params[:course_id]).each do |eval| %>
                   <tr>
                     <td><%= eval.project.pname %></td>
                     <td><%= eval.score %></td>
