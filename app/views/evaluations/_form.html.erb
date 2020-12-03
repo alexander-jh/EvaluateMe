@@ -3,14 +3,13 @@
     <button class="close" data-dismiss="modal" data-target="modal-window-eval">x</button>
     <div class="modal-content">
       <%= form_tag evaluations_path(method: :post) do |f| %>
-        <% Ingroup.where(group_id: Group.where(course_id: Project.find(params[:project_id]).course_id)).each do |mem| %>
+        <% Ingroup.where(group_id: Group.where(course_id: Project
+                  .find(params[:project_id]).course_id)).each do |mem| %>
           <h3>Evaluation for <%= "#{mem.user.Fname} #{mem.user.Lname}" %></h3>
-          <%= fields_for @evaluations do |form| %>
+          <%= fields_for :evaluations do |form| %>
+            <% form.hidden_field :project_id, :value => params[:project_id] %>
+            <% form.hidden_field :user_id, :value => mem.user_id %>
             <div class="field">
-              <% form.hidden_field :project_id, value: params[:project_id] %>
-              <% form.hidden_field :user_id, value: mem.user_id %>
-            </div>
-            <div class=":field">
               <%= form.label :score %>
               <%= form.number_field :score %>
             </div>
