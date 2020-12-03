@@ -7,15 +7,16 @@
                   .find(params[:project_id]).course_id)).each do |mem| %>
           <h3>Evaluation for <%= "#{mem.user.Fname} #{mem.user.Lname}" %></h3>
           <%= fields_for :evaluation do |form| %>
-            <% form.hidden_field :project_id, :value => params[:project_id] %>
-            <% form.hidden_field :user_id, :value => mem.user_id %>
             <div class="field">
               <%= form.label :score %>
               <%= form.number_field :score %>
             </div>
             <div class="field">
               <%= form.label :name %>
-              <%= form.text_area :name %>
+              <%= text_area_tag :name %>
+              <%= form.hidden_field :project_id, :value => params[:project_id] %>
+              <%= form.hidden_field :user_id, :value => mem.user_id %>
+              <%= form.hidden_field :course_id, :value => Project.find(params[:project_id]).course_id %>
             </div>
           <% end %>
         <% end %>
