@@ -23,10 +23,10 @@
       <% end %>
       <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "signup-btn" %>
     <% else %>
-        <%- if !current_page?(root_url) %>
-          <%= link_to "Login", home_url, class: "signup-btn" %>
-        <% else %>
+        <%- if current_page?(root_url) || current_page?(home_url) %>
           <%= link_to "Sign Up", new_registration_path(resource_name), class: "signup-btn"%>
+        <% else %>
+          <%= link_to "Login", home_url, class: "signup-btn" %>
         <% end %>
     <% end %>
   </div>
