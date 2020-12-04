@@ -1,7 +1,10 @@
 <div id="modal-window-course" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <button class="close" data-dismiss="modal" data-target="modal-window-course">x</button>
     <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-heading">New Course</h2>
+        <button class="signup-btn" data-dismiss="modal" data-target="modal-window-course">x</button>
+      </div>
       <%= form_with(model: @course, local: true) do |form| %>
         <% if @course.errors.any? %>
           <div id="error_explanation">

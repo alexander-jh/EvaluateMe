@@ -1,3 +1,38 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+#remember_me_checkbox{
+  width: auto;
+  margin-left: 20px;
+  vertical-align: middle;
+}
+
+#form_container{
+  margin-right: 40px;
+  border: 4px solid;
+  border-radius: 20px;
+  height: 380px;
+  padding: 10px;
+  display: inline-block;
+}
+
+#user_admin{
+  width: auto;
+  margin-left: 20px;
+  vertical-align: middle;
+}
+
+#signup_form_container{
+  margin-right: 40px;
+  border: 4px solid;
+  border-radius: 20px;
+  height: 630px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.flex_container_signup{
+	display:flex;
+	justify-content: center;
+}

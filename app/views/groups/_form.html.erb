@@ -1,7 +1,10 @@
 <div id="modal-window-group" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <button class="close" data-dismiss="modal" data-target="modal-window-group">x</button>
     <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-heading">New Group</h2>
+        <button class="signup-btn" data-dismiss="modal" data-target="modal-window-group">x</button>
+      </div>
       <%= form_with(model: @group, local: true) do |form| %>
         <% if @group.errors.any? %>
           <div id="error_explanation">

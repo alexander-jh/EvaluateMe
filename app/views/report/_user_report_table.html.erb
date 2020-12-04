@@ -1,7 +1,10 @@
 <div id="modal-window-ureport<%="#{params{:course_id}}"%>" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <button class="close" data-dismiss="modal" data-target="modal-window-ureport<%="#{params{:course_id}}"%>">x</button>
     <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-heading">Reports</h2>
+        <button class="signup-btn" data-dismiss="modal" data-target="modal-window-eval">x</button>
+      </div>
       <h3>
         Report for <%= "#{Course.find(params[:course_id]).subject}#{Course.find(params[:course_id]).number}" %>
       </h3>

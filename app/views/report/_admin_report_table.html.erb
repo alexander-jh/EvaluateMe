@@ -1,7 +1,10 @@
 <div id="modal-window-areport<%= "#{params[:user_id]}" %>" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <button class="close" data-dismiss="modal" data-target="modal-window-areport<%= "#{params[:user_id]}" %>">x</button>
     <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-heading">User Reports</h2>
+        <button class="signup-btn" data-dismiss="modal" data-target="modal-window-areport<%= "#{params[:user_id]}" %>">x</button>
+      </div>
       <h3>
         Report for <%= "#{User.find(params[:user_id]).Fname} #{User.find(params[:user_id]).Lname}" %>
       </h3>
