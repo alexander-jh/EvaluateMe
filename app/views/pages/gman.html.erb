@@ -21,7 +21,7 @@
               <td><%=user.user.email%></td>
               <td><%= Evaluation.where(user_id: user.user_id).where(course_id: user.group.course_id).average(:score) %></td>
               <td><%= link_to 'Select', grep_path(:course_id => user.group.course_id, :user_id => user.user_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-greport#{user.user_id}"}  %>
-            /<%= link_to "Delete", user, method: :delete %></td>
+            /<%= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>
         </tbody>

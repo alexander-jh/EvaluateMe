@@ -24,7 +24,7 @@
           <td><%= Complete.where(project_id: p.id).count %></td>
           <td><%= Incomplete.where(project_id: p.id).count %></td>
           <td><%= link_to "Select", pshow_path(:id => p.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-preport#{p.id}"} %>
-          /<%= link_to "Delete", p, method: :delete %>/<%= link_to "Send Evaluation", send_eval_path(:id => p.id), :remote => true %></td>
+          /<%= link_to "Delete", p, method: :delete, data: { confirm: 'Are you sure?' } %>/<%= link_to "Send Evaluation", send_eval_path(:id => p.id), :remote => true %></td>
         </tr>
       <% end %>
       </tbody>
@@ -52,7 +52,7 @@
             <td><%= g.group_name %></td>
             <td><%= Ingroup.where(group_id: g.id).count %></td>
             <td><%= Evaluation.where(group_id: g.id).average(:score) %></td>
-            <td><%= link_to 'Select', gman_path(:group_id => g.id, :course_id => @current_course) %>/<%= link_to "Delete", g, method: :delete %></td>
+            <td><%= link_to 'Select', gman_path(:group_id => g.id, :course_id => @current_course) %>/<%= link_to "Delete", g, method: :delete, data: { confirm: 'Are you sure?' }%></td>
           </tr>
         <% end %>
       </tbody>
@@ -84,7 +84,7 @@
             <td><%=c.user.email%></td>
             <td> <%= Evaluation.where(user_id: c.user_id).where(course_id: c.course_id).average(:score) %> </td>
             <td><%= link_to "Select", arep_path(:user_id => c.user_id, :course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-areport#{c.user_id}"} %>
-          /<%= link_to "Delete", c, method: :delete %></td>
+          /<%= link_to "Delete", c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>
