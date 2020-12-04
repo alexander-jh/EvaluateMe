@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
       end
     end
     flash[:alert] = "Evaluations sent."
-    redirect_to aman_url(:course_id => @project.course_id)
+    render :js => 'window.location.reload()'
   end
 
   # GET /projects/new
