@@ -15,6 +15,7 @@
                 <%= hidden_field_tag :evaluation_project_id, "", :name=> "evaluation[][project_id]", :value => Project.find(params[:project_id]).id %>
                 <%= hidden_field_tag :evaluation_user_id, "", :name=> "evaluation[][user_id]", :value => mem.user_id %>
                 <%= hidden_field_tag :evaluation_course_id, "", :name=> "evaluation[][course_id]", :value => Project.find(params[:project_id]).course_id %>
+                <%= hidden_field_tag :evaluation_group_id, "", :name=> "evaluation[][group_id]", :value => mem.group_id %>
               </div>
               <div class="field">
                 <label>Score:</label><br />

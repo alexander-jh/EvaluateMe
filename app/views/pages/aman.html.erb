@@ -51,7 +51,7 @@
           <tr>
             <td><%= g.group_name %></td>
             <td><%= Ingroup.where(group_id: g.id).count %></td>
-            <td><%= Evaluation.where(user_id: Ingroup.where(group_id: g.id)).average(:score) %></td>
+            <td><%= Evaluation.where(group_id: g.id).average(:score) %></td>
             <td><%= link_to 'Select', gman_path(:group_id => g.id, :course_id => @current_course) %>/<%= link_to "Delete", g, method: :delete %></td>
           </tr>
         <% end %>

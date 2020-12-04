@@ -31,7 +31,7 @@ class EvaluationsController < ApplicationController
     eval.each do |param|
       @evaluation = Evaluation.new(project_id: param[:project_id], user_id: param[:user_id],
                                    course_id: param[:course_id], score: param[:score],
-                                   comment: param[:comment])
+                                   comment: param[:comment], group_id: param[:group_id])
       @evaluation.save
     end
     Incomplete.where(project_id: @evaluation.project_id).find_by(user_id: current_user.id).destroy
