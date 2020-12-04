@@ -17,7 +17,15 @@
           </div>
         <% end %>
         <div class="modal-body">
-          <div class="field">
+          <%- if Incourse.where.not(user_id: current_user).
+            where(course_id: params[:course_id]).reject{ |group|
+            Ingroup.where(group_id: params[:group_id]).find_by(user_id: group.user_id)
+            }.count.zero? %>
+            <div class="field">
+              <%= "No available students." %>
+            </div>
+          <% else %>
+            <div class="field">
               <%= form.label :user_id %>
               <%= form.select :user_id, Incourse.where.not(user_id: current_user).
                 where(course_id: params[:course_id]).reject{ |group|
@@ -25,12 +33,13 @@
                 }.
                 collect {|user| ["#{user.user.Lname}, #{user.user.Fname}", user.user.id]}%>
               <%= form.hidden_field :group_id, :value => params[:group_id] %>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <div class="actions">
-            <%= form.submit "Add User to Group"%>
-          </div>
+            </div>
+            <div class="modal-footer">
+              <div class="actions">
+                <%= form.submit "Add User to Group"%>
+              </div>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>
