@@ -138,6 +138,8 @@
 
 .header{
   line-height: 5px
+  color: #4D61FC;
+  text-transform: capitalize;
 }
 
 .contents{
@@ -242,10 +244,8 @@ h1{
 
 /*faq page*/
 h2 {
-  font-family: Arial, Verdana;
-  font-weight: 800;
   font-size: 2.5rem;
-  color: #091f2f;
+  color: #4D61FC;
   text-transform: uppercase;
 }
 
