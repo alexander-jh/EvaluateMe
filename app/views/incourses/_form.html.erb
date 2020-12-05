@@ -25,9 +25,11 @@
           <% else %>
             <div class="field">
               <%= form.label :user_id %>
+              <div class="form-group" data-controller='select2'>
                 <%= form.select :user_id, User.where.not(admin: true).reject{ |user|
                     Incourse.where(course_id: params[:course_id]).find_by(user_id: user.id)
-                    }.collect {|user| ["#{user.Lname}, #{user.Fname}", user.id]}%>
+                    }.collect {|user| ["#{user.Lname}, #{user.Fname}", user.id]}, {include_blank: false, required: true, include_hidden: false}, class: 'form-control content-search' %>
+              </div>
                 <%= form.hidden_field :course_id, :value => Course.find_by(id: params[:course_id]).id %>
                 <div class="modal-footer">
                   <div class="actions">
