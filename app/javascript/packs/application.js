@@ -22,3 +22,5 @@ $('#myModal').on('shown.bs.modal', function () {
 $('#button-close').on('click' , function() {
     $('#myInput').off('focus')
 })
+
+$('.dropdown-toggle').dropdown()

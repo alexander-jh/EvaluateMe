@@ -26,12 +26,14 @@
             </div>
           <% else %>
             <div class="field">
-              <%= form.label :user_id %>
-              <%= form.select :user_id, Incourse.where.not(user_id: current_user).
-                where(course_id: params[:course_id]).reject{ |group|
-                Ingroup.where(group_id: params[:group_id]).find_by(user_id: group.user_id)
-                }.
-                collect {|user| ["#{user.user.Lname}, #{user.user.Fname}", user.user.id]}%>
+              <%= form.label :user_id %>.
+              <div class="form-group" data-controller='select2'>
+                <%= form.select :user_id, Incourse.where.not(user_id: current_user).
+                  where(course_id: params[:course_id]).reject{ |group|
+                  Ingroup.where(group_id: params[:group_id]).find_by(user_id: group.user_id)
+                  }.
+                  collect {|user| ["#{user.user.Lname}, #{user.user.Fname}", user.user.id]}, {include_blank: false, required: true, include_hidden: false}, class: 'form-control content-search' %>
+              </div>
               <%= form.hidden_field :group_id, :value => params[:group_id] %>
             </div>
             <div class="modal-footer">
