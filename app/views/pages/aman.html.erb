@@ -74,15 +74,34 @@
         <th>Last Name</th>
         <th>Email</th>
         <th>Mean Score</th>
+        <th>Comment Rating</th>
         <th>Action</th>
       </thead>
       <tbody>
+        <% analyzer = Sentimental.new %>
+        <% analyzer.load_defaults %>
+        <% analyzer.threshold = 0.75 %>
         <%- Incourse.where(course_id: @current_course).each do |c| %>
           <tr>
             <td><%=c.user.Fname%></td>
             <td><%=c.user.Lname%></td>
             <td><%=c.user.email%></td>
-            <td> <%= Evaluation.where(user_id: c.user_id).where(course_id: c.course_id).average(:score) %> </td>
+            <% eval = Evaluation.where(user_id: c.user_id).where(course_id: c.course_id) %>
+            <td><%= eval.average(:score) %> </td>
+            <td>
+              <% res = '' %>
+              <%- eval.each do |c| %>
+                <% res = res + ' ' + c.comment %>
+              <% end %>
+              <% comment = analyzer.score res %>
+              <%- if comment < 0.25 %>
+                <%= "Negative" %>
+              <% elsif comment > 0.6 %>
+                <%= "Positive" %>
+              <% else %>
+                <%= "Neutral" %>
+              <% end %>
+            </td>
             <td><%= link_to "Select", arep_path(:user_id => c.user_id, :course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-areport#{c.user_id}"} %>
           /<%= link_to "Delete", c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
