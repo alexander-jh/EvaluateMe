@@ -9,7 +9,7 @@
         <th>Course Name</th>
         <th>Enrolled</th>
         <th>Mean</th>
-        <th></th>
+        <th>Action</th>
       </thead>
       <tbody>
       <% Course.where(user_id: current_user.id).each do |course| %>

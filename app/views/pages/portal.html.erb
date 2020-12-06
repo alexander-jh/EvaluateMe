@@ -6,6 +6,7 @@
         <th>Subject</th>
         <th>Number</th>
         <th>Project Name</th>
+        <th>Action</th>
       </thead>
       <tbody>
       <%- Incomplete.where(user_id: current_user.id).each do |i| %>
@@ -33,6 +34,7 @@
         <th>Number</th>
         <th>Course Name</th>
         <th>Mean Score</th>
+        <th>Action</th>
       </thead>
       <tbody>
       <% Incourse.where(user_id: current_user.id).each do |c| %>
