@@ -1,0 +1,34 @@
+<div id="modal-window-group" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-heading">New Group</h2>
+        <button class="signup-btn" data-dismiss="modal" data-target="modal-window-group">x</button>
+      </div>
+      <%= form_with(model: @group, local: true) do |form| %>
+        <% if @group.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@group.errors.count, "error") %> prohibited this incourse from being saved:</h2>
+            <ul>
+              <% @group.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="modal-body">
+          <div class="field">
+            <%= form.label :group_name %>
+            <%= form.text_field :group_name %>
+            <%= form.hidden_field :course_id, :value => Course.find_by(id: params[:course_id]).id %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="actions">
+            <%= form.submit %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

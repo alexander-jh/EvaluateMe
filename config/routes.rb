@@ -1,0 +1,23 @@
+Rails.application.routes.draw do
+  root 'pages#home'
+  devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' }
+  get 'home', to: 'pages#home', as: 'home'
+  get 'portal', to: 'pages#portal', as: 'portal'
+  get 'admin_portal', to: 'pages#admin_portal', as: 'admin_portal'
+  get 'admin_main', to: 'pages#aman', as: 'aman'
+  get 'group_main', to: 'pages#gman', as: 'gman'
+  get 'user_test', to: 'pages#utest', as: 'utest'
+  get '/projects/show/:id', to: 'projects#show', as: 'pshow'
+  get '/report/group_report', to: 'report#group_report', as: 'grep'
+  get '/report/user_report', to: 'report#user_report', as: 'urep'
+  get '/report/admin_report', to: 'report#admin_report', as: 'arep'
+  get '/projects/send_eval/:id', to: 'projects#send_evaluation', as: 'send_eval'
+  resources :incourses
+  resources :incompletes
+  resources :evaluations
+  resources :projects
+  resources :ingroups
+  resources :groups
+  resources :courses
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+end

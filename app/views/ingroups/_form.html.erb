@@ -1,0 +1,49 @@
+<div id="modal-window-ingroup" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-heading">Add User</h2>
+        <button class="signup-btn" data-dismiss="modal" data-target="modal-window-ingroup">x</button>
+      </div>
+      <%= form_with(model: @ingroup, local: true) do |form| %>
+        <% if @ingroup.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@ingroup.errors.count, "error") %> prohibited this incourse from being saved:</h2>
+            <ul>
+              <% @ingroup.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="modal-body">
+          <%- if Incourse.where.not(user_id: current_user).
+            where(course_id: params[:course_id]).reject{ |group|
+            Ingroup.where(group_id: params[:group_id]).find_by(user_id: group.user_id)
+            }.count.zero? %>
+            <div class="field">
+              <%= "No available students." %>
+            </div>
+          <% else %>
+            <div class="field">
+              <%= form.label :user_id %>.
+              <div class="form-group" data-controller='select2'>
+                <%= form.select :user_id, Incourse.where.not(user_id: current_user).
+                  where(course_id: params[:course_id]).reject{ |group|
+                  Ingroup.where(group_id: params[:group_id]).find_by(user_id: group.user_id)
+                  }.
+                  collect {|user| ["#{user.user.Lname}, #{user.user.Fname}", user.user.id]}, {include_blank: false, required: true, include_hidden: false}, class: 'form-control content-search' %>
+              </div>
+              <%= form.hidden_field :group_id, :value => params[:group_id] %>
+            </div>
+            <div class="modal-footer">
+              <div class="actions">
+                <%= form.submit "Add User to Group"%>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

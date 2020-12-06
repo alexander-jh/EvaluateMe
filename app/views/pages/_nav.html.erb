@@ -1,0 +1,37 @@
+<div class= "nav-bar">
+  <div class="main">
+    <%- if !user_signed_in? %>
+      <%= link_to "EvaluateMe", home_url%>
+    <% elsif current_user.admin? %>
+      <%= link_to "EvaluateMe", admin_portal_url %>
+    <% else %>
+      <%= link_to "EvaluateMe", portal_url %>
+    <% end %>
+  </div>
+  <div class="account">
+    <%- if user_signed_in? %>
+      <%- if current_user.admin? %>
+        <%- if current_page?(controller: 'pages', action:'aman') || current_page?(controller: 'pages', action:'gman') %>
+          <%- if current_page?(controller: 'pages', action:'gman') %>
+            <%= link_to 'Course Manage', aman_path(:course_id => params[:course_id]), class: "signup-btn" %>
+          <% end %>
+          <%= link_to 'Admin Portal', admin_portal_path, class: "signup-btn" %>
+        <% end %>
+        <%- if current_page?(controller: 'pages', action: 'admin_portal') %>
+          <%= link_to 'Add Course', new_course_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "signup-btn"} %>
+        <% end %>
+      <% end %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "signup-btn" %>
+    <% else %>
+        <%- if current_page?(root_url) || current_page?(home_url) %>
+          <%= link_to "Sign Up", new_registration_path(resource_name), class: "signup-btn"%>
+        <% else %>
+          <%= link_to "Login", home_url, class: "signup-btn" %>
+        <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="flash">
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p> 
+</div>  

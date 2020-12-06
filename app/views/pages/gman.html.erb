@@ -1,0 +1,33 @@
+<body>
+  <div class = "heading_container">
+    <h1 class="table_heading">Manage Group: <%= "#{Group.find(params[:group_id]).group_name}" %></h1>
+    <%= link_to 'Add User', new_ingroup_path(:group_id => @current_group, :course_id => Group.find(@current_group).course_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-ingroup', class: 'signup-btn'}  %>
+  </div>
+  <div class="table_container">
+    <%- if Ingroup.where(group_id: @current_group).count != 0 %>
+      <table id="example" class="table table-striped table-bordered" style="width: 1000px;">
+        <thead>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Average Score</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          <% Ingroup.where(group_id: @current_group).each do |user| %>
+            <tr>
+              <td><%=user.user.Fname%></td>
+              <td><%=user.user.Lname%></td>
+              <td><%=user.user.email%></td>
+              <td><%= Evaluation.where(user_id: user.user_id).where(course_id: user.group.course_id).average(:score) %></td>
+              <td><%= link_to 'Select', grep_path(:course_id => user.group.course_id, :user_id => user.user_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-greport#{user.user_id}"}  %>
+            /<%= link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <h3><%= "No group students assigned to group." %></h3>
+    <% end %>
+  </div>
+</body>

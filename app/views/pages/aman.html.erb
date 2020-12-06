@@ -1,0 +1,126 @@
+<h1><%="#{Course.find(params[:course_id]).subject}
+        #{Course.find(params[:course_id]).number}:
+       Section #{Course.find(params[:course_id]).course_id}" %>
+</h1>
+<div class="heading_container">
+  <h1 class="table_heading">Projects</h1>
+  <%= link_to 'New Project', new_project_path(:course_id => @current_course), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-project', class: "signup-btn"}  %>
+</div>
+<div class="table_container">
+  <%- if Project.where(course_id: @current_course).count != 0 %>
+    <table id="data-table" class="table table-striped table-bordered" style="width: 800px;">
+      <thead>
+        <th>Project Name</th>
+        <th>Mean Score</th>
+        <th>Completed</th>
+        <th>Incomplete</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+      <%- Project.where(course_id: @current_course).each do |p| %>
+        <tr>
+          <td><%= p.pname %></td>
+          <td><%= Evaluation.where(project_id: p.id).average(:score) %></td>
+          <td><%= Complete.where(project_id: p.id).count %></td>
+          <td><%= Incomplete.where(project_id: p.id).count %></td>
+          <td><%= link_to "Select", pshow_path(:id => p.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-preport#{p.id}"} %>
+          /<%= link_to "Delete", p, method: :delete, data: { confirm: 'Are you sure?' } %>/<%= link_to "Send Evaluation", send_eval_path(:id => p.id), :remote => true %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h3><%= "No projects assigned." %></h3>
+  <% end %>
+</div>
+<div class="heading_container">
+  <h1 class="table_heading">Groups</h1>
+  <%= link_to 'New Group', new_group_path(:course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-group',class: 'signup-btn'}  %>
+</div>
+<div class="table_container">
+  <%- if Group.where(course_id: @current_course).count != 0 %>
+    <table id="data-table" class="table table-striped table-bordered" style="width: 800px;">
+      <thead>
+        <th>Group Name</th>
+        <th># of Members</th>
+        <th>Mean</th>
+        <th>Modify</th>
+      </thead>
+      <tbody>
+        <%- Group.where(course_id: @current_course).each do |g| %>
+          <tr>
+            <td><%= g.group_name %></td>
+            <td><%= Ingroup.where(group_id: g.id).count %></td>
+            <td><%= Evaluation.where(group_id: g.id).average(:score) %></td>
+            <td><%= link_to 'Select', gman_path(:group_id => g.id, :course_id => @current_course) %>/<%= link_to "Delete", g, method: :delete, data: { confirm: 'Are you sure?' }%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h3><%= "No groups for section." %></h3>
+  <% end %>
+</div>
+
+<div class="heading_container">
+  <h1 class="table_heading">Users</h1>
+  <%= link_to 'Add User', new_incourse_path(:course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-incourse', class: 'signup-btn'}  %>
+</div>
+<div class="table_container">
+  <%- if Incourse.where(course_id: @current_course).count != 0 %>
+    <table id="data-table" class="table table-striped table-bordered" style="width: 800px;">
+      <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Mean Score</th>
+        <th>Comment Rating</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <% analyzer = Sentimental.new %>
+        <% analyzer.load_defaults %>
+        <% analyzer.threshold = 0.75 %>
+        <%- Incourse.where(course_id: @current_course).each do |c| %>
+          <tr>
+            <td><%=c.user.Fname%></td>
+            <td><%=c.user.Lname%></td>
+            <td><%=c.user.email%></td>
+            <% eval = Evaluation.where(user_id: c.user_id).where(course_id: c.course_id) %>
+            <td>
+              <%- if eval.count.zero? %>
+                <%= "N/A" %>
+              <% else %>
+                <%= eval.average(:score) %>
+              <% end %>
+            </td>
+            <td>
+              <%- if eval.count.zero? %>
+                <%= "N/A" %>
+              <% else %>
+                <% res = '' %>
+                <%- eval.each do |g| %>
+                  <% res = res + ' ' + g.comment %>
+                <% end %>
+                <% comment = analyzer.score res %>
+                <%- if comment < 0.25 %>
+                  <%= "Negative" %>
+                <% elsif comment > 0.6 %>
+                  <%= "Positive" %>
+                <% else %>
+                  <%= "Neutral" %>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= link_to "Select", arep_path(:user_id => c.user_id, :course_id => params[:course_id]), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => "#modal-window-areport#{c.user_id}"} %>
+          /<%= link_to "Delete", c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h3><%= "No students enrolled." %></h3>
+  <% end %>
+</div>
+
+
