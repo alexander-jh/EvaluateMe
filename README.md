@@ -1,12 +1,14 @@
 # BugsWorld-final-beta
-# EvaluateMe
-#### Made by team BugsWorld
+# EvaluateMe - Peer Evaluation Tool
+#### Made by team: BugsWorld
 
-* This Web Application is a Peer Evaluation tool that allows student to leave constructive criticism and feedback to their fellow group members. This tool is useful to instructors who can set up classes, groups, sections, and see the ratings of all their students.
+This Web Application is a Peer Evaluation tool that allows student to leave constructive criticism and feedback to their fellow group members. This tool is useful to instructors who can set up classes, groups, sections, and see the ratings of all their students.
 
 ***
 
 ## Starting EvaluateMe
+
+This program uses Ruby 2.6.6 and Rails 6.0.3
 
 Once you have freshly cloned the project, to start the service enter the following in the console:  
 
