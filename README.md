@@ -12,7 +12,7 @@ Once you have freshly cloned the project, to start the service enter the followi
 * `bundle install` for system configurations
 * `bundle exec rails db:create` to create the database
 * `bundle exec rails db:schema:load` to initialize the database
-* `bundle exec rails assets:precompile` to compile the asset manifests and other files in the pipeline to the disk.
+* `bundle exec rake assets:precompile` to compile the asset manifests and other files in the pipeline to the disk.
 * `bundle exec rails s` to run the server
 
 ## Heroku Deployment
