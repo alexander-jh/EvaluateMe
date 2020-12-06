@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 # BugsWorld-final-beta
-=======
 # EvaluateMe
 #### Made by team BugsWorld
 
@@ -22,4 +20,3 @@ Once you have freshly cloned the project, to start the service enter the followi
 
 You can visit https://rails-test-eval.herokuapp.com/ to see our application on the web
 
->>>>>>> 1d7a8170dbf8691256d8839b89917f7f292d3f35
