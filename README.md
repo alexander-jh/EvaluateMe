@@ -1,24 +1,21 @@
-# README
+# EvaluateMe
+#### Made by team BugsWorld
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* This Web Application is a Peer Evaluation tool that allows student to leave constructive criticism and feedback to their fellow group members. This tool is useful to instructors who can set up classes, groups, sections, and see the ratings of all their students.
 
-Things you may want to cover:
+***
 
-* Ruby version
+## Starting EvaluateMe
 
-* System dependencies
+Once you have freshly cloned the project, to start the service enter the following in the console:  
 
-* Configuration
+`bundle install` for system configurations
+`bundle exec rails db:create` to create the database
+`bundle exec rails db:schema:load` to initialize the database
+`bundle exec rails assets:precompile` to compile the asset manifests and other files in the pipeline to the disk.
+`bundle exec rails s` to run the server
 
-* Database creation
+## Heroku Deployment
 
-* Database initialization
+You can visit https://rails-test-eval.herokuapp.com/ to see our application on the web
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
